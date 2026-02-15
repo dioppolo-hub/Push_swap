@@ -41,12 +41,6 @@ int	main(int argc, char **argv)
 		add_stack(argv[x], &stack_a);
 		x++;
 	}
-	x = 1;
-	while (x < argc)
-	{
-		check_argument(argv[x]);
-		x++;
-	}
 	print_stack(stack_a);
 	return (0);
 }

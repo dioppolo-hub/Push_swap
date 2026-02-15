@@ -5,7 +5,7 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra
 
 SRC = libft/ft_atoi.c libft/ft_calloc.c libft/ft_split.c libft/ft_strdup.c libft/ft_strlen.c libft/ft_substr.c \
-libft/ft_listnew.c libft/ft_listaddback.c parcing/add_stack.c parcing/check_arguments.c main.c
+libft/ft_listnew.c libft/ft_listaddback.c parcing/add_stack.c parcing/free.c main.c
 
 OBJ = $(SRC:.c=.o)
 

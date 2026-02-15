@@ -3,27 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   add_stack.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diego <diego@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 11:53:36 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/02/12 12:37:23 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/02/15 21:02:41 by diego            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	ft_freemat(char **mat)
+static void	check_double(t_list *stack_a, t_list *new)
 {
-	int	x;
+	t_list	*corrente;
+	int		numNew;
 
-	x = 0;
-	while (mat[x])
+	numNew = *(int *)new->content;
+	corrente = stack_a;
+	while (corrente != NULL)
 	{
-		free(mat[x]);
-		x++;
+		if (*(int *)corrente->content == numNew)
+			ft_error();
+		corrente = corrente->next;
 	}
-	free(mat);
+	return ;
 }
+
 static void	check_split(char *str)
 {
 	static int	i;
@@ -32,15 +36,9 @@ static void	check_split(char *str)
 	while (str[i])
 	{
 		if (!(((str[i] == '-' || str[i] == '+') || str[i] == ' ') || (str[i] >= '0' && str[i] <= '9')))
-		{
-			printf("split1\n");
 			ft_error();
-		}
 		if ((str[i] == '-' || str[i] == '+') && !(str[i + 1] >= '0' && str[i + 1] <= '9'))
-		{
-			printf("split2\n");
 			ft_error();
-		}
 		i++;
 	}
 	return ;
@@ -61,6 +59,7 @@ void	add_stack(char *argv, t_list **stack_a)
 		tempnumb = ft_atoi(mat[x]);
 		new = ft_lstnew((int *)ft_calloc(1, sizeof(int)));
 		*(int *)new->content = tempnumb;
+		check_double(*stack_a, new);
 		ft_lstadd_back(stack_a, new);
 		x++;
 	}

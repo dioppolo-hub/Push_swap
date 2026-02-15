@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diego <diego@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 09:39:07 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/02/12 12:33:13 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/02/15 21:03:28 by diego            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@ t_list		*ft_lstnew(void *content);
 char		*ft_strdup(const char *s);
 size_t		ft_strlen(const char	*str);
 char		*ft_substr(char const *str, unsigned int start, size_t len);
-char		*check_argument(char *str);
+void		check_argument(char *str);
 void		ft_error(void);
+void		ft_freemat(char **mat);
 void		add_stack(char *argv, t_list **stack_a);
 
 #endif
