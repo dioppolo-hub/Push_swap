@@ -24,8 +24,32 @@ static void	ft_freemat(char **mat)
 	}
 	free(mat);
 }
+static void	check_split(char **mat)
+{
+	static int	i;
+	int			j;
 
-int	add_stack(char *argv, t_list **stack_a)
+	i = 0;
+	j = 0;
+	while (mat[i])
+	{
+		if (!(((mat[i][j] == '-' && mat[i][j] == '+') && mat[i][j] == ' ') || (mat[i][j] >= '0' && mat[i][j] <= '9')))
+		{
+			printf("crab\n");
+			ft_error();
+		}
+		if ((mat[i][j] == '-' && mat[i][j] == '+') || (mat[i][j + 1] >= '0' && mat[i][j + 1] <= '9'))
+		{
+			printf("spiz\n");
+			ft_error();
+		}
+		j++;
+	}
+	i++;
+	return ;
+}
+
+void	add_stack(char *argv, t_list **stack_a)
 {
 	int		x;
 	char	**mat;
@@ -36,6 +60,7 @@ int	add_stack(char *argv, t_list **stack_a)
 	mat = ft_split(argv, ' ');
 	while (mat[x])
 	{
+		check_split(mat);
 		tempnumb = ft_atoi(mat[x]);
 		new = ft_lstnew((int *)ft_calloc(1, sizeof(int)));
 		*(int *)new->content = tempnumb;
@@ -43,5 +68,4 @@ int	add_stack(char *argv, t_list **stack_a)
 		x++;
 	}
 	ft_freemat(mat);
-	return (0);
 }

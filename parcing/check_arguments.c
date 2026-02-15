@@ -27,14 +27,14 @@ char	*check_argument(char *argv)
 	{
 		if (!(((argv[i] == '-' && argv[i] == '+') && argv[i] == ' ') || (argv[i] >= '0' && argv[i] <= '9')))
 		{
-			printf("crab\n");
-			ft_error();
-		}
+				printf("crab\n");
+				ft_error();
+			}
 		if ((argv[i] == '-' && argv[i] == '+') || (argv[i + 1] >= '0' && argv[i + 1] <= '9'))
-		{
-			printf("spiz\n");
-			ft_error();
-		}
+			{
+				printf("spiz\n");
+				ft_error();
+			}
 		i++;
 	}
 	return (argv);
