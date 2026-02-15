@@ -36,11 +36,9 @@ static char	*s_str(char const *str, unsigned int start,
 
 char	*ft_substr(char const *str, unsigned int start, size_t len)
 {
-	size_t	i;
 	size_t	lenstr;
 	char	*substr;
 
-	i = 0;
 	if (!str)
 		return (NULL);
 	lenstr = ft_strlen(str);

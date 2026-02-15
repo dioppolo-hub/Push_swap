@@ -15,14 +15,12 @@
 char	*ft_strdup(const char *s)
 {
 	int		i;
-	int		len;
 	size_t	nmemb;
 	char	*dup;
 
 	if (!s)
 		return (NULL);
 	i = 0;
-	len = 0;
 	nmemb = ft_strlen(s);
 	dup = (char *)malloc((nmemb + 1) * sizeof(char));
 	if (!dup)

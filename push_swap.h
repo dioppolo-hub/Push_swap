@@ -38,7 +38,7 @@ char		*ft_strdup(const char *s);
 size_t		ft_strlen(const char	*str);
 char		*ft_substr(char const *str, unsigned int start, size_t len);
 char		*check_argument(char *str);
-void		ft_error(char *str);
+void		ft_error(void);
 int			add_stack(char *argv, t_list **stack_a);
 
 #endif

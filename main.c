@@ -12,32 +12,41 @@
 
 #include "push_swap.h"
 
-/* void	printlist(t_list *p)
+static void	print_stack(t_list *stack)
 {
-	while (p != NULL)
+	printf("Stack_A: ");
+	while (stack != NULL)
 	{
-		if (p->next != NULL)
-			printf("[%s]->", (char *)p->content);
+		if (stack->next != NULL)
+			printf("[%d]->", *(int *)stack->content);
 		else
-			printf("[%s]", (char *)p->content);
-		p = p->next;
+			printf("[%d]", *(int *)stack->content);
+		stack = stack->next;
 	}
 	printf("\n");
-}*/
+}
 int	main(int argc, char **argv)
 {
 	long int	x;
-	char		**temp;
-	long int	num;
-	t_list	*stack_a = NULL;
-	t_list	*stack_b = NULL;
+	t_list	*stack_a;
+//	t_list	*stack_b;
 
+	stack_a = NULL;
+//	stack_b = NULL;
 	if (argc < 2)
-	return (0);
-	x = 0;
-	while (++x <= argc)
-		check_argument(argv[x]);
-	x = 0;
-	while (++x <= argc)
+		return (0);
+	x = 1;
+	while (x < argc)
+	{
 		add_stack(argv[x], &stack_a);
+		x++;
+	}
+	x = 1;
+	while (x < argc)
+	{
+		check_argument(argv[x]);
+		x++;
+	}
+	print_stack(stack_a);
+	return (0);
 }

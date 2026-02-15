@@ -1,22 +1,23 @@
-NAME = push_swap.a
+NAME = push_swap
 
 CC = cc
 
 CFLAGS = -Wall -Werror -Wextra
 
-AR = ar rcs
-
-SRC = ft_atoi.c ft_calloc.c ft_split.c ft_strdup.c ft_strlen.c ft_substr.c ft_listnew.c ft_lstaddback.c 
+SRC = libft/ft_atoi.c libft/ft_calloc.c libft/ft_split.c libft/ft_strdup.c libft/ft_strlen.c libft/ft_substr.c \
+libft/ft_listnew.c libft/ft_listaddback.c parcing/add_stack.c parcing/check_arguments.c main.c
 
 OBJ = $(SRC:.c=.o)
+
+INCLUDES = -I.
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(AR) $(NAME) $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 %.o: %.c 
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
 	rm -f $(OBJ)

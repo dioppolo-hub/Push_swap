@@ -12,9 +12,17 @@
 
 #include "push_swap.h"
 
-char	*ft_freeall(char *str)
+static void	ft_freemat(char **mat)
 {
-	
+	int	x;
+
+	x = 0;
+	while (mat[x])
+	{
+		free(mat[x]);
+		x++;
+	}
+	free(mat);
 }
 
 int	add_stack(char *argv, t_list **stack_a)
@@ -25,12 +33,15 @@ int	add_stack(char *argv, t_list **stack_a)
 	t_list	*new;
 
 	x = 0;
-	mat = ft_split(argv, " ");
+	mat = ft_split(argv, ' ');
 	while (mat[x])
 	{
 		tempnumb = ft_atoi(mat[x]);
-		new = ft_lstnew(tempnumb);
+		new = ft_lstnew((int *)ft_calloc(1, sizeof(int)));
+		*(int *)new->content = tempnumb;
 		ft_lstadd_back(stack_a, new);
 		x++;
 	}
+	ft_freemat(mat);
+	return (0);
 }

@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	ft_error(char *argv)
+void	ft_error(void)
 {
 	write (2, "Error\n", 6);
 	exit(1);
@@ -23,12 +23,19 @@ char	*check_argument(char *argv)
 	int	i;
 
 	i = 0;
-	while (argv)
+	while (argv[i])
 	{
-		if (!(argv[i] != '-' && argv[i] != '+' && argv[i] == ' ' && argv[i] >= '0' && argv[i] <= '9'))
-			ft_error(argv);
-		if (!(argv[i] == '-' && argv[i] == '+' || (argv[i + 1] >= '0' && argv[i + 1] <= '9')))
-			ft_error(argv);
+		if (!(((argv[i] == '-' && argv[i] == '+') && argv[i] == ' ') || (argv[i] >= '0' && argv[i] <= '9')))
+		{
+			printf("crab\n");
+			ft_error();
+		}
+		if ((argv[i] == '-' && argv[i] == '+') || (argv[i + 1] >= '0' && argv[i + 1] <= '9'))
+		{
+			printf("spiz\n");
+			ft_error();
+		}
+		i++;
 	}
 	return (argv);
 }
