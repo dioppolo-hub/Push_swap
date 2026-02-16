@@ -4,8 +4,9 @@ CC = cc
 
 CFLAGS = -Wall -Werror -Wextra
 
-SRC = libft/ft_atoi.c libft/ft_calloc.c libft/ft_split.c libft/ft_strdup.c libft/ft_strlen.c libft/ft_substr.c \
-libft/ft_listnew.c libft/ft_listaddback.c parcing/add_stack.c parcing/free_error.c main.c
+SRC = libft/ft_atoi.c libft/ft_calloc.c libft/ft_split.c libft/ft_lstadd_front.c libft/ft_strdup.c libft/ft_strlen.c \
+libft/ft_substr.c libft/ft_listnew.c libft/ft_listaddback.c libft/ft_lstdelone.c parcing/add_stack.c parcing/free_error.c \
+operations/swap.c operations/push.c operations/rotate.c main.c
 
 OBJ = $(SRC:.c=.o)
 

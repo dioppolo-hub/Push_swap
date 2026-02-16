@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diego <diego@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 09:39:07 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/02/15 21:03:28 by diego            ###   ########.fr       */
+/*   Updated: 2026/02/16 18:14:38 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 typedef struct s_list
 {
-	int			*content;
+	int			content;
 	struct s_list	*next;
 }			t_list;
 
@@ -33,7 +33,7 @@ long int	ft_atoi(const char *str);
 void		*ft_calloc(size_t nmemb, size_t size);
 void		ft_bzero(void *s, size_t n);
 void		ft_lstadd_back(t_list **lst, t_list *new);
-t_list		*ft_lstnew(void *content);
+t_list		*ft_lstnew(int content);
 char		*ft_strdup(const char *s);
 size_t		ft_strlen(const char	*str);
 char		*ft_substr(char const *str, unsigned int start, size_t len);
@@ -41,5 +41,15 @@ void		check_argument(char *str);
 void		ft_error(void);
 void		ft_freemat(char **mat);
 void		add_stack(char *argv, t_list **stack_a);
+int			sa(t_list **stack_a);
+int			sb(t_list **stack_b);
+int			ss(t_list **stack_a, t_list **stack_b);
+void		ft_lstadd_front(t_list **lst, t_list *new);
+int			pb(t_list **stack_a, t_list **stack_b);
+int			pa(t_list **stack_a, t_list **stack_b);
+void		ft_lstdelone(t_list *lst);
+int			ra(t_list **stack_a);
+int			rb(t_list **stack_b);
+int			rr(t_list **stack_a, t_list **stack_b);
 
 #endif

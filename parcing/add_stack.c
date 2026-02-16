@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_stack.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diego <diego@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 11:53:36 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/02/15 21:02:41 by diego            ###   ########.fr       */
+/*   Updated: 2026/02/16 16:30:16 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,22 @@
 static void	check_double(t_list *stack_a, t_list *new)
 {
 	t_list	*corrente;
-	int		numNew;
+	int		num;
 
-	numNew = *(int *)new->content;
+	num = (int)new->content;
 	corrente = stack_a;
 	while (corrente != NULL)
 	{
-		if (*(int *)corrente->content == numNew)
+		if ((int)corrente->content == num)
 			ft_error();
 		corrente = corrente->next;
 	}
 	return ;
 }
 
-static void	check_split(char *str)
+int	check_split(char *str)
 {
-	static int	i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -41,14 +41,14 @@ static void	check_split(char *str)
 			ft_error();
 		i++;
 	}
-	return ;
+	return (1);
 }
 
 void	add_stack(char *argv, t_list **stack_a)
 {
 	int		x;
 	char	**mat;
-	int		tempnumb;
+	int		n;
 	t_list	*new;
 
 	x = 0;
@@ -56,9 +56,8 @@ void	add_stack(char *argv, t_list **stack_a)
 	while (mat[x])
 	{
 		check_split(mat[x]);
-		tempnumb = ft_atoi(mat[x]);
-		new = ft_lstnew((int *)ft_calloc(1, sizeof(int)));
-		*(int *)new->content = tempnumb;
+		n = ft_atoi(mat[x]);
+		new = ft_lstnew(n);
 		check_double(*stack_a, new);
 		ft_lstadd_back(stack_a, new);
 		x++;
