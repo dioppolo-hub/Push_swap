@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diego <diego@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 09:39:07 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/02/16 18:14:38 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/02/17 15:44:08 by diego            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,8 @@ void		ft_lstdelone(t_list *lst);
 int			ra(t_list **stack_a);
 int			rb(t_list **stack_b);
 int			rr(t_list **stack_a, t_list **stack_b);
+int			rra(t_list **stack_a);
+int			rrb(t_list **stack_b);
+int			rrr(t_list **stack_a, t_list **stack_b);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diego <diego@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 09:55:01 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/02/16 17:55:29 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/02/17 15:52:59 by diego            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	main(int argc, char **argv)
 	}
 	print_stack(stack_a, 1);
 	print_stack(stack_b, 2);
-	pb(&stack_a, &stack_b);
+	rra(&stack_a);
 	print_stack(stack_a, 1);
 	print_stack(stack_b, 2);
 	return (0);
