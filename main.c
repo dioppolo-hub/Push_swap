@@ -6,7 +6,7 @@
 /*   By: diego <diego@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 09:55:01 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/02/17 15:52:59 by diego            ###   ########.fr       */
+/*   Updated: 2026/02/18 18:16:21 by diego            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,9 @@ static void	print_stack(t_list *stack, int caso)
 			if (stack->next != NULL)
 				printf("[%d]->", (int)stack->content);
 			else
-				printf("[%d]", (int)stack->content);
+				printf("[%d]\n", (int)stack->content);
 			stack = stack->next;
 		}
-		printf("\n");
 	}
 	if(caso == 2)
 	{
@@ -42,11 +41,30 @@ static void	print_stack(t_list *stack, int caso)
 	}
 }
 
+void	print_tmparr(int *arr, int size)
+{
+	int	i;
+
+	printf("Tmp_Array: ");
+	i = 0;
+	while (i < size)
+	{
+		if (i < size - 1)
+			printf("[%d]->", arr[i]);
+		else
+			printf("[%d]", arr[i]);
+		i++;
+	}
+	printf("\n");
+}
+
 int	main(int argc, char **argv)
 {
 	long int	x;
-	t_list	*stack_a;
-	t_list	*stack_b;
+	int			size;
+	int			*tmp;
+	t_list		*stack_a;
+	t_list		*stack_b;
 
 	stack_a = NULL;
 	stack_b = NULL;
@@ -60,8 +78,9 @@ int	main(int argc, char **argv)
 	}
 	print_stack(stack_a, 1);
 	print_stack(stack_b, 2);
-	rra(&stack_a);
-	print_stack(stack_a, 1);
-	print_stack(stack_b, 2);
+	size = ft_lstsize(stack_a);
+	tmp = indice_stack(&stack_a, size);
+	print_tmparr(tmp, size);
+	free (tmp);
 	return (0);
 }

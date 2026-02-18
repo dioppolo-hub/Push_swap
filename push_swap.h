@@ -6,7 +6,7 @@
 /*   By: diego <diego@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 09:39:07 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/02/17 15:44:08 by diego            ###   ########.fr       */
+/*   Updated: 2026/02/18 18:03:06 by diego            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,7 @@ int			rr(t_list **stack_a, t_list **stack_b);
 int			rra(t_list **stack_a);
 int			rrb(t_list **stack_b);
 int			rrr(t_list **stack_a, t_list **stack_b);
+int			*indice_stack(t_list **stack, int size);
+int			ft_lstsize(t_list *lst);
 
 #endif
