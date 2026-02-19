@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diego <diego@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 17:56:05 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/02/17 15:20:01 by diego            ###   ########.fr       */
+/*   Updated: 2026/02/19 09:18:32 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,5 @@ int	rr(t_list **stack_a, t_list **stack_b)
 	rotate(stack_a);
 	rotate(stack_b);
 	write(1, "rr\n", 3);
-	return (1);	
+	return (1);
 }

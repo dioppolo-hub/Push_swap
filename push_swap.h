@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diego <diego@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 09:39:07 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/02/18 18:03:06 by diego            ###   ########.fr       */
+/*   Updated: 2026/02/19 11:48:54 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP
-# define PUSH_SWAP
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
 # include <stdlib.h>
 # include <limits.h>
@@ -24,7 +24,7 @@
 
 typedef struct s_list
 {
-	int			content;
+	int				content;
 	struct s_list	*next;
 }			t_list;
 
@@ -54,7 +54,10 @@ int			rr(t_list **stack_a, t_list **stack_b);
 int			rra(t_list **stack_a);
 int			rrb(t_list **stack_b);
 int			rrr(t_list **stack_a, t_list **stack_b);
-int			*indice_stack(t_list **stack, int size);
+void		indice_stack(t_list **stack, int size);
 int			ft_lstsize(t_list *lst);
+void		print_tmparr(int *arr, int size);
+void		sort_tre(t_list **stack);
+void		print_stack(t_list *stack, int caso);
 
 #endif

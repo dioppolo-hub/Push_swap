@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bubble_sort.c                                      :+:      :+:    :+:   */
+/*   indice_stack.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diego <diego@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 16:54:34 by diego             #+#    #+#             */
-/*   Updated: 2026/02/18 18:02:58 by diego            ###   ########.fr       */
+/*   Updated: 2026/02/19 12:04:49 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	bubble_sort(int size, int *tmp)
 	int	swap;
 	int	i;
 	int	j;
-	
+
 	i = 0;
 	while (i < size - 1)
 	{
@@ -35,10 +35,11 @@ static void	bubble_sort(int size, int *tmp)
 		i++;
 	}
 }
+
 static void	sostituzione_while(int size, int *tmp, t_list **stack, t_list *curr)
 {
 	int	i;
-	
+
 	curr = (*stack);
 	while (curr)
 	{
@@ -48,22 +49,23 @@ static void	sostituzione_while(int size, int *tmp, t_list **stack, t_list *curr)
 			if (curr->content == tmp[i])
 			{
 				curr->content = i;
-				break;
+				break ;
 			}
 			i++;
 		}
 		curr = curr->next;
 	}
 }
-int	*indice_stack(t_list **stack, int size)
+
+void	indice_stack(t_list **stack, int size)
 {
-	int *tmp;
-	int i;
+	int		*tmp;
+	int		i;
 	t_list	*curr;
-	
-	tmp = malloc(sizeof(int) * size);
+
+	tmp = ft_calloc(sizeof(int), size);
 	if (!tmp)
-		return (0);
+		return ;
 	curr = (*stack);
 	i = 0;
 	while (curr)
@@ -73,5 +75,5 @@ int	*indice_stack(t_list **stack, int size)
 	}
 	bubble_sort(size, tmp);
 	sostituzione_while(size, tmp, stack, curr);
-	return (tmp);
+	free(tmp);
 }

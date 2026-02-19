@@ -6,11 +6,11 @@
 /*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 11:35:32 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/02/16 17:52:40 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/02/19 09:17:59 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "push_swap.h"
+#include "push_swap.h"
 
 void	push(t_list **receiver, t_list **giver)
 {

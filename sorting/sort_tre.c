@@ -1,35 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   sort_tre.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/12 09:47:40 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/02/19 09:17:07 by dioppolo         ###   ########.fr       */
+/*   Created: 2026/02/19 11:09:41 by dioppolo          #+#    #+#             */
+/*   Updated: 2026/02/19 12:28:09 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char	*ft_strdup(const char *s)
+void	sort_tre(t_list **stack)
 {
 	int		i;
-	size_t	nmemb;
-	char	*dup;
+	t_list	*curr;
+	t_list	*middle;
+	t_list	*last;
 
-	if (!s)
-		return (NULL);
 	i = 0;
-	nmemb = ft_strlen(s);
-	dup = (char *)malloc((nmemb + 1) * sizeof(char));
-	if (!dup)
-		return (NULL);
-	while (s[i])
-	{
-		dup[i] = s[i];
-		i++;
-	}
-	dup[i] = '\0';
-	return (dup);
+	curr = (*stack);
+	middle = (*stack)->next;
+	last = (*stack)->next->next;
+	if ((curr->content > middle->content)
+		&& (curr->content < last->content))
+		sa(stack);
+	if ((curr->content > middle->content)
+		&& (curr->content > last->content))
+		ra(stack);
+	if ((curr->content < middle->content)
+		&& (curr->content > last->content))
+		rra(stack);
+	print_stack((*stack), 1);
 }

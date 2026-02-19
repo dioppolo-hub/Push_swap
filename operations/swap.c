@@ -6,7 +6,7 @@
 /*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 09:22:47 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/02/16 17:53:16 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/02/19 09:18:55 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	swap(t_list **stack_a)
 {
 	t_list	*a;
 	t_list	*b;
-	
+
 	if (!(*stack_a && (*stack_a)->next))
 		return ;
 	a = (*stack_a);

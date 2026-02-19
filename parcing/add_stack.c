@@ -6,7 +6,7 @@
 /*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 11:53:36 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/02/16 16:30:16 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/02/19 09:21:14 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,12 @@ int	check_split(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (!(((str[i] == '-' || str[i] == '+') || str[i] == ' ') || (str[i] >= '0' && str[i] <= '9')))
+		if (!(((str[i] == '-' || str[i] == '+')
+					|| str[i] == ' ')
+				|| (str[i] >= '0' && str[i] <= '9')))
 			ft_error();
-		if ((str[i] == '-' || str[i] == '+') && !(str[i + 1] >= '0' && str[i + 1] <= '9'))
+		if ((str[i] == '-' || str[i] == '+')
+			&& !(str[i + 1] >= '0' && str[i + 1] <= '9'))
 			ft_error();
 		i++;
 	}
