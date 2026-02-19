@@ -6,7 +6,7 @@
 /*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 15:22:01 by diego             #+#    #+#             */
-/*   Updated: 2026/02/19 09:18:12 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/02/19 15:50:00 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	reverse_rotate(t_list **stack)
 	t_list	*last;
 	t_list	*second_last;
 
+	if (!(*stack && (*stack)->next))
+		return ;
 	last = (*stack);
 	while (last->next != NULL)
 		last = last->next;

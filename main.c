@@ -6,7 +6,7 @@
 /*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 09:55:01 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/02/19 12:06:03 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/02/19 15:56:10 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,18 @@ int	main(int argc, char **argv)
 		add_stack(argv[x], &stack_a);
 		x++;
 	}
+
+	size = ft_lstsize(stack_a);
+	indice_stack(&stack_a, size);
 	print_stack(stack_a, 1);
 	print_stack(stack_b, 2);
-	size = ft_lstsize(stack_a);
+	if (size == 2 && stack_a->content > stack_a->next->content)
+		sa(&stack_a);
 	if (size == 3)
 		sort_tre(&stack_a);
-	indice_stack(&stack_a, size);
+	if (size == 5)
+		sort_five(&stack_a, &stack_b);
+	print_stack(stack_a, 1);
+	print_stack(stack_b, 2);
 	return (0);
 }
