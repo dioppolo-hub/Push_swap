@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diego <diego@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 09:55:01 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/02/19 15:56:10 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/02/20 19:36:43 by diego            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int	main(int argc, char **argv)
 {
 	long int	x;
 	int			size;
+	int			*tmp;
 	t_list		*stack_a;
 	t_list		*stack_b;
 
@@ -71,13 +72,9 @@ int	main(int argc, char **argv)
 		return (0);
 	x = 1;
 	while (x < argc)
-	{
-		add_stack(argv[x], &stack_a);
-		x++;
-	}
-
+		add_stack(argv[x++], &stack_a);
 	size = ft_lstsize(stack_a);
-	indice_stack(&stack_a, size);
+	tmp = indice_stack(&stack_a, size);
 	print_stack(stack_a, 1);
 	print_stack(stack_b, 2);
 	if (size == 2 && stack_a->content > stack_a->next->content)
@@ -86,6 +83,7 @@ int	main(int argc, char **argv)
 		sort_tre(&stack_a);
 	if (size == 5)
 		sort_five(&stack_a, &stack_b);
+	rev_indice_stack(&stack_a, tmp);
 	print_stack(stack_a, 1);
 	print_stack(stack_b, 2);
 	return (0);

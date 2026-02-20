@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diego <diego@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 09:39:07 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/02/19 13:48:46 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/02/20 19:33:48 by diego            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,12 @@ int			rr(t_list **stack_a, t_list **stack_b);
 int			rra(t_list **stack_a);
 int			rrb(t_list **stack_b);
 int			rrr(t_list **stack_a, t_list **stack_b);
-void		indice_stack(t_list **stack, int size);
+int			*indice_stack(t_list **stack, int size);
 int			ft_lstsize(t_list *lst);
 void		print_tmparr(int *arr, int size);
 void		sort_tre(t_list **stack);
 void		print_stack(t_list *stack, int caso);
 void		sort_five(t_list **stack_a, t_list **stack_b);
+void		rev_indice_stack(t_list **stack, int *tmp);
+
 #endif
