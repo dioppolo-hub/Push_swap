@@ -6,7 +6,7 @@
 /*   By: diego <diego@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 09:55:01 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/02/20 19:36:43 by diego            ###   ########.fr       */
+/*   Updated: 2026/02/20 22:46:33 by diego            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ int	main(int argc, char **argv)
 	x = 1;
 	while (x < argc)
 		add_stack(argv[x++], &stack_a);
+	print_stack(stack_a, 1);
+	print_stack(stack_b, 2);
 	size = ft_lstsize(stack_a);
 	tmp = indice_stack(&stack_a, size);
 	print_stack(stack_a, 1);
@@ -83,8 +85,10 @@ int	main(int argc, char **argv)
 		sort_tre(&stack_a);
 	if (size == 5)
 		sort_five(&stack_a, &stack_b);
-	rev_indice_stack(&stack_a, tmp);
+	if (size > 5)
+		sort_generico(&stack_a, &stack_b);
 	print_stack(stack_a, 1);
 	print_stack(stack_b, 2);
+	rev_indice_stack(&stack_a, tmp);
 	return (0);
 }

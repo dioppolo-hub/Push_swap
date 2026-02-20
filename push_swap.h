@@ -6,7 +6,7 @@
 /*   By: diego <diego@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 09:39:07 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/02/20 19:33:48 by diego            ###   ########.fr       */
+/*   Updated: 2026/02/20 22:26:09 by diego            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,6 @@ void		sort_tre(t_list **stack);
 void		print_stack(t_list *stack, int caso);
 void		sort_five(t_list **stack_a, t_list **stack_b);
 void		rev_indice_stack(t_list **stack, int *tmp);
+void		sort_generico(t_list **stack_a, t_list **stack_b);
 
 #endif
