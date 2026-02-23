@@ -6,7 +6,7 @@
 /*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 09:39:07 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/02/23 13:57:43 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/02/23 14:31:01 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,7 @@ void		sort_tre(t_list **stack);
 void		print_stack(t_list *stack, int caso);
 void		sort_five(t_list **stack_a, t_list **stack_b);
 void		sort_generico(t_list **stack_a, t_list **stack_b, int size);
+int			find_index(t_list *stack, int target);
+void		sort_four(t_list **stack_a, t_list **stack_b);
 
 #endif

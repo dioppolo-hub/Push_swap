@@ -6,7 +6,7 @@
 /*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 09:55:01 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/02/23 14:15:59 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/02/23 14:27:59 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,12 @@ int	main(int argc, char **argv)
 		sa(&stack_a);
 	if (size == 3)
 		sort_tre(&stack_a);
+	if (size == 4)
+		sort_four(&stack_a, &stack_b);
 	if (size == 5)
 		sort_five(&stack_a, &stack_b);
-	// if (size > 5)
-	// 	sort_generico(&stack_a, &stack_b, size);
+	if (size > 5)
+		sort_generico(&stack_a, &stack_b, size);
 	print_stack(stack_a, 1);
 	print_stack(stack_b, 2);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 17:56:05 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/02/23 14:05:32 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/02/23 14:26:32 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	rotate(t_list **stack)
 	t_list	*second;
 	t_list	*last;
 
-	print_stack(*stack, 1);
 	if (!(*stack && (*stack)->next))
 		return ;
 	first = (*stack);
