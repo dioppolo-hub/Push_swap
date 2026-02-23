@@ -6,7 +6,7 @@
 /*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 09:39:07 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/02/23 09:33:44 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/02/23 13:57:43 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ long int	ft_atoi(const char *str);
 void		*ft_calloc(size_t nmemb, size_t size);
 void		ft_bzero(void *s, size_t n);
 void		ft_lstadd_back(t_list **lst, t_list *new);
+t_list		*ft_lstlast(t_list *lst);
 t_list		*ft_lstnew(int content);
 char		*ft_strdup(const char *s);
 size_t		ft_strlen(const char	*str);
@@ -61,7 +62,6 @@ void		print_tmparr(int *arr, int size);
 void		sort_tre(t_list **stack);
 void		print_stack(t_list *stack, int caso);
 void		sort_five(t_list **stack_a, t_list **stack_b);
-void		rev_indice_stack(t_list **stack, int *tmp);
 void		sort_generico(t_list **stack_a, t_list **stack_b, int size);
 
 #endif
