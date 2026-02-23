@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   indice_stack.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diego <diego@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 16:54:34 by diego             #+#    #+#             */
-/*   Updated: 2026/02/20 19:34:36 by diego            ###   ########.fr       */
+/*   Updated: 2026/02/23 09:42:33 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	sostituzione_while(int size, int *tmp, t_list **stack, t_list *curr)
 		{
 			if (curr->content == tmp[i])
 			{
-				curr->content = i;
+				curr->index = i;
 				break ;
 			}
 			i++;

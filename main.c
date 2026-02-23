@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diego <diego@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 09:55:01 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/02/20 22:46:33 by diego            ###   ########.fr       */
+/*   Updated: 2026/02/23 09:44:07 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,12 @@ void	print_stack(t_list *stack, int caso)
 		while (stack != NULL)
 		{
 			if (stack->next != NULL)
-				printf("[%d]->", (int)stack->content);
+				printf("[%d|%d]->", (int)stack->content, (int)stack->index);
 			else
-				printf("[%d]\n", (int)stack->content);
+				printf("[%d|%d]", (int)stack->content, (int)stack->index);
 			stack = stack->next;
 		}
+		printf("\n");
 	}
 	if (caso == 2)
 	{
@@ -32,9 +33,9 @@ void	print_stack(t_list *stack, int caso)
 		while (stack != NULL)
 		{
 			if (stack->next != NULL)
-				printf("[%d]->", (int)stack->content);
+				printf("[%d|%d]->", (int)stack->content, (int)stack->index);
 			else
-				printf("[%d]", (int)stack->content);
+				printf("[%d|%d]", (int)stack->content, (int)stack->index);
 			stack = stack->next;
 		}
 		printf("\n");
@@ -86,9 +87,11 @@ int	main(int argc, char **argv)
 	if (size == 5)
 		sort_five(&stack_a, &stack_b);
 	if (size > 5)
-		sort_generico(&stack_a, &stack_b);
+		sort_generico(&stack_a, &stack_b, size);
 	print_stack(stack_a, 1);
 	print_stack(stack_b, 2);
-	rev_indice_stack(&stack_a, tmp);
+	/* rev_indice_stack(&stack_a, tmp); */
+	print_stack(stack_a, 1);
+	print_stack(stack_b, 2);
 	return (0);
 }
