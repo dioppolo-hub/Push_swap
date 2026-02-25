@@ -12,118 +12,45 @@
 
 #include "push_swap.h"
 
-int	find_pos(int index, t_list **stack_b)
+int	min(int c_ra, int c_rb)
 {
-	int		x;
-	t_list	*currB;
+	int	common;
 
-	x = 0;
-	currB = (*stack_b);
-	while (currB->next != NULL)
-	{
-		if(index < currB->index && index > currB->next->index)
-			break ;
-		x++;
-		currB = currB->next;
-	}
-	x++;
-	return (x);
-}
-
-int	is_min(t_list **stack_a, t_list **stack_b)
-{
-	t_list	*currA;
-	t_list	*currB;
-
-	currA = (*stack_a);
-	currB = (*stack_b);
-	while (currB != NULL)
-	{
-		if(currA->index > currB->index)
-			return (0);
-		currB = currB->next;
-	}
-	return(1);
-}
-
-int	is_max(t_list **stack_a, t_list **stack_b)
-{
-	t_list	*currA;
-	t_list	*currB;
-
-	currA = (*stack_a);
-	currB = (*stack_b);
-	while (currB != NULL)
-	{
-		if(currA->index < currB->index)
-			return (0);
-		currB = currB->next;
-	}
-	return(1);
-}
-
-int check_limit(int rb, int ra, int lenA, int lenB)
-{
-	if (ra == 0 && rb < lenB / 2)
-		return (rb);
-	if (rb == 0 && ra < lenA / 2)
-		return (ra);
-	if (ra == 0 && rb > lenB / 2)
-		return (lenB - rb + 1);
+	common = 0;
+	if (c_ra == c_rb)
+		common = c_rb = c_ra;
+	if (c_ra > c_rb)
+		common = c_rb;
 	else
-		return (lenA - ra + 1);
+		common = c_ra;
+	return (common);
 }
-
-int	calc_moves(int rb, int ra, int lenA, int lenB)
-{
-	int	moves;
-
-	if (ra == 0 || rb == 0)
-		return (check_limit(ra, rb, lenA, lenB));
-	if (rb < lenB / 2 && ra < lenA / 2)
-	{
-		if (rb < ra)
-			moves = ra;
-		else
-			moves = rb;
-	}
-	if (rb > lenB / 2 && ra > lenA / 2)
-	{
-		if (rb < ra)
-			moves = lenA - ra + 1;
-		else
-			moves = lenB - rb + 1;
-	}
-	if (rb > lenB / 2 && ra < lenA / 2)
-		moves = ra + rb;
-	if (rb < lenB / 2 && ra > lenA / 2)
-		moves = ra + rb;
-	return (moves);
-}
-
-
 
 void	push_index(int c_ra, t_list **stack_a, t_list **stack_b)
 {
 	int		c_rb;
-	int 	count;
+	int		common;
+	int		ra_moves;
+	int		rb_moves;
 
-	count = 0;
+	ra_moves = c_ra - min(c_ra, c_rb);
+	ra_moves = c_ra - min(c_ra, c_rb);
 	if (c_ra < ft_lstsize(*stack_a) / 2)
 	{
 		c_rb = find_pos(c_ra, stack_b);
+		common = min(c_ra, c_rb);
 		if (c_rb < ft_lstsize(*stack_b) / 2)
 		{
 			if (c_ra < c_rb)
 			{
-				while (count < c_ra && ++count)
+				while (count < c_ra + 1 && ++count)
 					rr(stack_a, stack_b);
 				while (count < c_rb && ++count)
 					rb(stack_b);
 			}
 			else
 			{
-				while (count < c_rb && ++count)
+				while (count < c_rb + 1 && ++count)
 					rr(stack_a, stack_b);
 				while (count < c_rb && ++count)
 					ra(stack_a);
@@ -145,14 +72,14 @@ void	push_index(int c_ra, t_list **stack_a, t_list **stack_b)
 		{
 			if (c_ra < c_rb)
 			{
-				while (count < ft_lstsize(*stack_b) - c_rb && ++count)
+				while (count < ft_lstsize(*stack_b) - c_rb + 1 && ++count)
 					rrr(stack_a, stack_b);
 				while (count < ft_lstsize(*stack_a) - c_ra && ++count)
 					rrb(stack_b);
 			}
 			else
 			{
-				while (count < ft_lstsize(*stack_a) - c_ra && ++count)
+				while (count < ft_lstsize(*stack_a) - c_ra + 1 && ++count)
 					rrr(stack_a, stack_b);
 				while (count < ft_lstsize(*stack_b) - c_rb && ++count)
 					rra(stack_a);
@@ -216,10 +143,7 @@ static void	sort_to_b(t_list **stack_a, t_list **stack_b)
 	}
 }
 
-/* static void	sort_to_a(t_list **stack_a, t_list **stack_b)
-{
-	
-} */
+
 
 void	sort_generico(t_list **stack_a, t_list **stack_b)
 {
