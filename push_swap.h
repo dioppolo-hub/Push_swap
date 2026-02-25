@@ -6,7 +6,7 @@
 /*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 09:39:07 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/02/25 09:41:07 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/02/25 14:17:01 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int			find_index(t_list *stack, int target);
 void		sort_four(t_list **stack_a, t_list **stack_b);
 int			calc_moves(int rb, int ra, int lenA, int lenB);
 int			check_limit(int rb, int ra, int lenA, int lenB);
-int			is_min(t_list **stack_a, t_list **stack_b);
-int			is_max(t_list **stack_a, t_list **stack_b);
+int			is_min(int index, t_list **stack_b);
+int			is_max(int index, t_list **stack_b);
 int			find_pos(int index, t_list **stack_b);
 #endif

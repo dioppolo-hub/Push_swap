@@ -6,7 +6,7 @@
 /*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 09:19:52 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/02/25 09:40:24 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/02/25 15:55:46 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,67 +16,74 @@ int	calc_moves(int rb, int ra, int lenA, int lenB)
 {
 	int	moves;
 
+	moves = 0;
 	if (ra == 0 || rb == 0)
-		return (check_limit(ra, rb, lenA, lenB));
-	if (rb < lenB / 2 && ra < lenA / 2)
+		return (check_limit(rb, ra, lenA, lenB));
+	if (rb <= lenB / 2 && ra <= lenA / 2)
 	{
-		if (rb < ra)
+		if (ra > rb)
 			moves = ra;
 		else
 			moves = rb;
 	}
-	if (rb > lenB / 2 && ra > lenA / 2)
+	else if (rb > lenB / 2 && ra > lenA / 2)
 	{
-		if (rb < ra)
-			moves = lenA - ra + 1;
+		if ((lenB - rb) > (lenA - ra))
+			moves = lenB - rb;
 		else
-			moves = lenB - rb + 1;
+			moves = lenA - ra;
 	}
-	if (rb > lenB / 2 && ra < lenA / 2)
-		moves = ra + rb;
-	if (rb < lenB / 2 && ra > lenA / 2)
-		moves = ra + rb;
+	else if (rb > lenB / 2 && ra < lenA / 2)
+		moves = ra + (lenB - rb);
+	else
+		moves = (lenA - ra) + rb;
 	return (moves);
 }
 
 int	check_limit(int rb, int ra, int lenA, int lenB)
 {
-	if (ra == 0 && rb < lenB / 2)
-		return (rb);
-	if (rb == 0 && ra < lenA / 2)
-		return (ra);
-	if (ra == 0 && rb > lenB / 2)
-		return (lenB - rb + 1);
+	if (ra == 0)
+	{
+		if (rb <= lenB / 2)
+			return (rb);
+		else
+			return (lenB - rb);
+	}
 	else
-		return (lenA - ra + 1);
+	{
+		if (ra <= lenA / 2)
+			return (ra);
+		else
+			return (lenA - ra);
+	}
 }
 
-int	is_min(t_list **stack_a, t_list **stack_b)
+int	is_min(int index, t_list **stack_b)
 {
-	t_list	*currA;
 	t_list	*currB;
 
-	currA = (*stack_a);
+	if ((*stack_b) == NULL)
+		return (1);
 	currB = (*stack_b);
 	while (currB != NULL)
 	{
-		if(currA->index > currB->index)
+		if(index > currB->index)
 			return (0);
 		currB = currB->next;
 	}
 	return(1);
 }
 
-int	is_max(t_list **stack_a, t_list **stack_b)
+int	is_max(int index, t_list **stack_b)
 {
-	t_list	*currA;
 	t_list	*currB;
 
-	currA = (*stack_a);
+	if ((*stack_b) == NULL)
+		return (1);
 	currB = (*stack_b);
 	while (currB != NULL)
 	{
-		if(currA->index < currB->index)
+		if(index < currB->index)
 			return (0);
 		currB = currB->next;
 	}
@@ -90,6 +97,10 @@ int	find_pos(int index, t_list **stack_b)
 
 	x = 0;
 	currB = (*stack_b);
+	if (is_max(index, stack_b))
+		return (x);
+	if (is_min(index, stack_b))
+		return (ft_lstsize(*stack_b));
 	while (currB->next != NULL)
 	{
 		if(index < currB->index && index > currB->next->index)

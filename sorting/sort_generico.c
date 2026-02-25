@@ -12,18 +12,11 @@
 
 #include "push_swap.h"
 
-int	min(int c_ra, int c_rb)
+int	min(int a, int b)
 {
-	int	common;
-
-	common = 0;
-	if (c_ra == c_rb)
-		common = c_rb = c_ra;
-	if (c_ra > c_rb)
-		common = c_rb;
-	else
-		common = c_ra;
-	return (common);
+	if (a > b)
+		return (b);
+	return (a);
 }
 
 void	push_index(int c_ra, t_list **stack_a, t_list **stack_b)
@@ -32,68 +25,55 @@ void	push_index(int c_ra, t_list **stack_a, t_list **stack_b)
 	int		common;
 	int		ra_moves;
 	int		rb_moves;
+	int		rr_b;
+	int		rr_a;
+	int		size_b;
 
-	if (c_ra < ft_lstsize(*stack_a) / 2)
+	c_rb = find_pos(c_ra, stack_b);
+	size_b = ft_lstsize(*stack_b);
+	if (c_ra < ft_lstsize(*stack_a) / 2 && c_rb < ft_lstsize(*stack_b) / 2)
 	{
-		c_rb = find_pos(c_ra, stack_b);
 		common = min(c_ra, c_rb);
 		ra_moves = c_ra - common;
 		rb_moves = c_rb - common;
-		if (c_rb < ft_lstsize(*stack_b) / 2)
-		{
-			if (c_ra < c_rb)
-			{
-				while (common < c_ra && common--)
-					rr(stack_a, stack_b);
-				while (rb_moves < c_rb && rb_moves--)
-					rb(stack_b);
-			}
-			else
-			{
-				while (common < c_rb && common--)
-					rr(stack_a, stack_b);
-				while (rb_moves < c_rb && rb_moves--)
-					ra(stack_a);
-			}
-		}
-		else
-		{
-			while (ra_moves < c_ra && ra_moves--)
-				ra(stack_a);
-			while (rb_moves < ft_lstsize(*stack_b) - c_rb && rb_moves--)
-				rrb(stack_b);
-		}
+		while (common > 0 && common--)
+			rr(stack_a, stack_b);
+		while (ra_moves > 0 && ra_moves--)
+			ra(stack_a);
+		while (rb_moves > 0 && rb_moves--)
+			rb(stack_b);
 	}
-	else
+	else if (c_ra >= ft_lstsize(*stack_a) / 2 && c_rb >= ft_lstsize(*stack_b) / 2)
 	{
-		c_rb = find_pos(c_ra, stack_b);
-		common = min(c_ra, c_rb);
-		ra_moves = c_ra - common;
-		rb_moves = c_rb - common;
-		if (c_rb < ft_lstsize(*stack_b) / 2)
-		{
-			if (c_ra < c_rb)
-			{
-				while (common < ft_lstsize(*stack_b) - c_rb && common--)
-					rrr(stack_a, stack_b);
-				while (rb_moves < ft_lstsize(*stack_a) - c_ra && rb_moves--)
-					rrb(stack_b);
-			}
-			else
-			{
-				while (common < ft_lstsize(*stack_a) - c_ra && common--)
-					rrr(stack_a, stack_b);
-				while (ra_moves < ft_lstsize(*stack_b) - c_rb && ra_moves--)
-					rra(stack_a);
-			}
-		}
-		else
-		{
-			while (ra_moves < ft_lstsize(*stack_a) - c_ra && ra_moves--)
-				rra(stack_a);
-			while (rb_moves < c_rb && rb_moves--)
-				rb(stack_b);
-		}
+		rr_a = ft_lstsize(*stack_a) - c_ra;
+		rr_b = ft_lstsize(*stack_b) - c_rb;
+		common = min(rr_a, rr_b);
+		ra_moves = rr_a - common;
+		rb_moves = rr_b - common;
+		while (common > 0 && common--)
+			rrr(stack_a, stack_b);
+		while (ra_moves > 0 && ra_moves--)
+			rra(stack_a);
+		while (rb_moves > 0 && rb_moves--)
+			rrb(stack_b);
+	}
+	else if (c_ra < ft_lstsize(*stack_a) / 2 && c_rb >= ft_lstsize(*stack_b) / 2)
+	{
+		ra_moves = c_ra;
+		rb_moves = ft_lstsize(*stack_b) - c_rb;
+		while (ra_moves > 0 && ra_moves--)
+			ra(stack_a);
+		while (rb_moves > 0 && rb_moves--)
+			rrb(stack_b);
+	}
+	else if (c_ra >= ft_lstsize(*stack_a) / 2 && c_rb < ft_lstsize(*stack_b) / 2)
+	{
+		ra_moves = ft_lstsize(*stack_a) - c_ra;
+		rb_moves = c_rb;
+		while (ra_moves > 0 && ra_moves--)
+			rra(stack_a);
+		while (rb_moves > 0 && rb_moves--)
+			rb(stack_b);
 	}
 	pb(stack_a, stack_b);
 }
@@ -113,7 +93,7 @@ void	push_middle(t_list **stack_a, t_list **stack_b, int ra)
 	{
 		pos = find_pos(currA->index, stack_b);
 		moves = calc_moves(pos, ra, ft_lstsize(*stack_a), ft_lstsize(*stack_b));
-		if (moves > min_move || min_move == -1)
+		if (moves < min_move || min_move == -1)
 		{
 			index_to_push = currA->index;
 			min_move = moves;
@@ -126,21 +106,36 @@ void	push_middle(t_list **stack_a, t_list **stack_b, int ra)
 
 static void	sort_to_b(t_list **stack_a, t_list **stack_b)
 {
+	int		moves;
+	int		min_move;
+	int		pos;
+	t_list	*currA;
+	int		index_to_push;
+	int		ra;
+
 	pb(stack_a, stack_b);
 	pb(stack_a, stack_b);
 	if ((*stack_b)->content < (*stack_b)->next->content)
 		sb(stack_b);
 	while ((*stack_a) != NULL)
 	{
-		if (is_max(stack_a, stack_b) == 1)
-			pb(stack_a, stack_b);
-		else if (is_min(stack_a, stack_b) == 1)
+		ra = 0;
+		min_move = -1;
+		currA = (*stack_a);
+		index_to_push = (*stack_a)->index;
+		while (currA != NULL)
 		{
-			pb(stack_a, stack_b);
-			rb(stack_b);
+			pos = find_pos(currA->index, stack_b);
+			moves = calc_moves(pos, ra, ft_lstsize(*stack_a), ft_lstsize(*stack_b));
+			if (moves < min_move || min_move == -1)
+			{
+				index_to_push = currA->index;
+				min_move = moves;
+			}
+			currA = currA->next;
+			ra++;
 		}
-		else
-			push_middle(stack_a, stack_b, 0);
+		push_index(index_to_push, stack_a, stack_b);
 	}
 }
 
