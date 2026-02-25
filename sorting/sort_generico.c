@@ -33,64 +33,65 @@ void	push_index(int c_ra, t_list **stack_a, t_list **stack_b)
 	int		ra_moves;
 	int		rb_moves;
 
-	ra_moves = c_ra - min(c_ra, c_rb);
-	ra_moves = c_ra - min(c_ra, c_rb);
 	if (c_ra < ft_lstsize(*stack_a) / 2)
 	{
 		c_rb = find_pos(c_ra, stack_b);
 		common = min(c_ra, c_rb);
+		ra_moves = c_ra - common;
+		rb_moves = c_rb - common;
 		if (c_rb < ft_lstsize(*stack_b) / 2)
 		{
 			if (c_ra < c_rb)
 			{
-				while (count < c_ra + 1 && ++count)
+				while (common < c_ra && common--)
 					rr(stack_a, stack_b);
-				while (count < c_rb && ++count)
+				while (rb_moves < c_rb && rb_moves--)
 					rb(stack_b);
 			}
 			else
 			{
-				while (count < c_rb + 1 && ++count)
+				while (common < c_rb && common--)
 					rr(stack_a, stack_b);
-				while (count < c_rb && ++count)
+				while (rb_moves < c_rb && rb_moves--)
 					ra(stack_a);
 			}
 		}
 		else
 		{
-			while (count < c_ra && ++count)
+			while (ra_moves < c_ra && ra_moves--)
 				ra(stack_a);
-			count = 0;
-			while (count < ft_lstsize(*stack_b) - c_rb && ++count)
+			while (rb_moves < ft_lstsize(*stack_b) - c_rb && rb_moves--)
 				rrb(stack_b);
 		}
 	}
 	else
 	{
 		c_rb = find_pos(c_ra, stack_b);
+		common = min(c_ra, c_rb);
+		ra_moves = c_ra - common;
+		rb_moves = c_rb - common;
 		if (c_rb < ft_lstsize(*stack_b) / 2)
 		{
 			if (c_ra < c_rb)
 			{
-				while (count < ft_lstsize(*stack_b) - c_rb + 1 && ++count)
+				while (common < ft_lstsize(*stack_b) - c_rb && common--)
 					rrr(stack_a, stack_b);
-				while (count < ft_lstsize(*stack_a) - c_ra && ++count)
+				while (rb_moves < ft_lstsize(*stack_a) - c_ra && rb_moves--)
 					rrb(stack_b);
 			}
 			else
 			{
-				while (count < ft_lstsize(*stack_a) - c_ra + 1 && ++count)
+				while (common < ft_lstsize(*stack_a) - c_ra && common--)
 					rrr(stack_a, stack_b);
-				while (count < ft_lstsize(*stack_b) - c_rb && ++count)
+				while (ra_moves < ft_lstsize(*stack_b) - c_rb && ra_moves--)
 					rra(stack_a);
 			}
 		}
 		else
 		{
-			while (count < ft_lstsize(*stack_a) - c_ra && ++count)
+			while (ra_moves < ft_lstsize(*stack_a) - c_ra && ra_moves--)
 				rra(stack_a);
-			count = 0;
-			while (count < c_rb && ++count)
+			while (rb_moves < c_rb && rb_moves--)
 				rb(stack_b);
 		}
 	}
