@@ -27,10 +27,19 @@ void	push_index(int c_ra, t_list **stack_a, t_list **stack_b)
 	int		rb_moves;
 	int		rr_b;
 	int		rr_a;
-	int		size_b;
+	t_list *tmp;
+	int i;
+	int index;
 
-	c_rb = find_pos(c_ra, stack_b);
-	size_b = ft_lstsize(*stack_b);
+	i = 0;
+	tmp = *stack_a;
+	while (i < c_ra)
+	{
+		tmp = tmp->next;
+		i++;
+	}
+	index = tmp->index;
+	c_rb = find_pos(index, stack_b);
 	if (c_ra < ft_lstsize(*stack_a) / 2 && c_rb < ft_lstsize(*stack_b) / 2)
 	{
 		common = min(c_ra, c_rb);
@@ -84,7 +93,7 @@ void	push_middle(t_list **stack_a, t_list **stack_b, int ra)
 	int		min_move;
 	int		pos;
 	t_list	*currA;
-	int		index_to_push;
+	int		best_ra;
 
 	ra = 0;
 	min_move = -1;
@@ -95,47 +104,32 @@ void	push_middle(t_list **stack_a, t_list **stack_b, int ra)
 		moves = calc_moves(pos, ra, ft_lstsize(*stack_a), ft_lstsize(*stack_b));
 		if (moves < min_move || min_move == -1)
 		{
-			index_to_push = currA->index;
+			best_ra = ra;
 			min_move = moves;
 		}
 		currA = currA->next;
 		ra++;
 	}
-	push_index(index_to_push, stack_a, stack_b);
+	push_index(best_ra, stack_a, stack_b);
 }
 
 static void	sort_to_b(t_list **stack_a, t_list **stack_b)
 {
-	int		moves;
-	int		min_move;
-	int		pos;
-	t_list	*currA;
-	int		index_to_push;
-	int		ra;
-
 	pb(stack_a, stack_b);
 	pb(stack_a, stack_b);
 	if ((*stack_b)->content < (*stack_b)->next->content)
 		sb(stack_b);
 	while ((*stack_a) != NULL)
 	{
-		ra = 0;
-		min_move = -1;
-		currA = (*stack_a);
-		index_to_push = (*stack_a)->index;
-		while (currA != NULL)
+		/*if (is_max((*stack_a)->index, stack_b) == 1)
+			pb(stack_a, stack_b);
+		else if (is_min((*stack_a)->index, stack_b) == 1)
 		{
-			pos = find_pos(currA->index, stack_b);
-			moves = calc_moves(pos, ra, ft_lstsize(*stack_a), ft_lstsize(*stack_b));
-			if (moves < min_move || min_move == -1)
-			{
-				index_to_push = currA->index;
-				min_move = moves;
-			}
-			currA = currA->next;
-			ra++;
+			pb(stack_a, stack_b);
+			rb(stack_b);
 		}
-		push_index(index_to_push, stack_a, stack_b);
+		else*/
+			push_middle(stack_a, stack_b, 0);
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fuck_this_number.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diego <diego@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 09:19:52 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/02/25 15:55:46 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/02/26 11:49:29 by diego            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,24 +90,41 @@ int	is_max(int index, t_list **stack_b)
 	return(1);
 }
 
-int	find_pos(int index, t_list **stack_b)
+int find_pos(int index, t_list **stack_b)
 {
-	int		x;
-	t_list	*currB;
+	t_list *curr;
+	int pos = 0;
+	int best_pos = -1;
+	int best_index = -2147483648;
 
-	x = 0;
-	currB = (*stack_b);
-	if (is_max(index, stack_b))
-		return (x);
-	if (is_min(index, stack_b))
-		return (ft_lstsize(*stack_b));
-	while (currB->next != NULL)
+	curr = *stack_b;
+	if (!curr)
+		return (0);
+	while (curr)
 	{
-		if(index < currB->index && index > currB->next->index)
-			break ;
-		x++;
-		currB = currB->next;
+		if (curr->index < index && curr->index > best_index)
+		{
+			best_index = curr->index;
+			best_pos = pos;
+		}
+		curr = curr->next;
+		pos++;
 	}
-	x++;
-	return (x);
+	if (best_pos != -1)
+		return (best_pos + 1);
+	curr = *stack_b;
+	pos = 0;
+	best_index = -2147483648;
+	best_pos = 0;
+	while (curr)
+	{
+		if (curr->index > best_index)
+		{
+			best_index = curr->index;
+			best_pos = pos;
+		}
+		curr = curr->next;
+		pos++;
+	}
+	return (best_pos + 1);
 }
