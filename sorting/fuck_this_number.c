@@ -6,7 +6,7 @@
 /*   By: diego <diego@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 09:19:52 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/02/26 11:49:29 by diego            ###   ########.fr       */
+/*   Updated: 2026/02/27 16:52:50 by diego            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,20 +74,21 @@ int	is_min(int index, t_list **stack_b)
 	return(1);
 }
 
-int	is_max(int index, t_list **stack_b)
+int	is_max(t_list **stack_a)
 {
 	t_list	*currB;
+	int		i;
 
-	if ((*stack_b) == NULL)
+	i = 0;
+	if ((*stack_a) == NULL)
 		return (1);
-	currB = (*stack_b);
+	currB = (*stack_a);
 	while (currB != NULL)
 	{
-		if(index < currB->index)
-			return (0);
+		i++;
 		currB = currB->next;
 	}
-	return(1);
+	return(i);
 }
 
 int find_pos(int index, t_list **stack_b)
@@ -95,14 +96,14 @@ int find_pos(int index, t_list **stack_b)
 	t_list *curr;
 	int pos = 0;
 	int best_pos = -1;
-	int best_index = -2147483648;
+	int best_index = 2147483647;
 
 	curr = *stack_b;
 	if (!curr)
 		return (0);
 	while (curr)
 	{
-		if (curr->index < index && curr->index > best_index)
+		if (curr->index > index && curr->index < best_index)
 		{
 			best_index = curr->index;
 			best_pos = pos;
@@ -114,11 +115,11 @@ int find_pos(int index, t_list **stack_b)
 		return (best_pos + 1);
 	curr = *stack_b;
 	pos = 0;
-	best_index = -2147483648;
+	best_index = 2147483647;
 	best_pos = 0;
 	while (curr)
 	{
-		if (curr->index > best_index)
+		if (curr->index < best_index)
 		{
 			best_index = curr->index;
 			best_pos = pos;

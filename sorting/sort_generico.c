@@ -120,17 +120,7 @@ static void	sort_to_b(t_list **stack_a, t_list **stack_b)
 	if ((*stack_b)->content < (*stack_b)->next->content)
 		sb(stack_b);
 	while ((*stack_a) != NULL)
-	{
-		/*if (is_max((*stack_a)->index, stack_b) == 1)
-			pb(stack_a, stack_b);
-		else if (is_min((*stack_a)->index, stack_b) == 1)
-		{
-			pb(stack_a, stack_b);
-			rb(stack_b);
-		}
-		else*/
 			push_middle(stack_a, stack_b, 0);
-	}
 }
 
 
@@ -138,5 +128,11 @@ static void	sort_to_b(t_list **stack_a, t_list **stack_b)
 void	sort_generico(t_list **stack_a, t_list **stack_b)
 {
 	sort_to_b(stack_a, stack_b);
-	//sort_to_a(stack_a, stack_b);
+	while ((*stack_b)->index != is_max(stack_a))
+		rb(stack_b);
+	rb(stack_b);
+	rb(stack_b);
+	while ((*stack_b)->index != 0)
+		pa(stack_a, stack_b);
+	pa(stack_a, stack_b);
 }
