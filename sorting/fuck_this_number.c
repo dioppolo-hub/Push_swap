@@ -6,7 +6,7 @@
 /*   By: diego <diego@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 09:19:52 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/02/27 16:52:50 by diego            ###   ########.fr       */
+/*   Updated: 2026/02/27 22:16:54 by diego            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,23 +58,7 @@ int	check_limit(int rb, int ra, int lenA, int lenB)
 	}
 }
 
-int	is_min(int index, t_list **stack_b)
-{
-	t_list	*currB;
-
-	if ((*stack_b) == NULL)
-		return (1);
-	currB = (*stack_b);
-	while (currB != NULL)
-	{
-		if(index > currB->index)
-			return (0);
-		currB = currB->next;
-	}
-	return(1);
-}
-
-int	is_max(t_list **stack_a)
+int	max(t_list **stack_a)
 {
 	t_list	*currB;
 	int		i;

@@ -123,16 +123,13 @@ static void	sort_to_b(t_list **stack_a, t_list **stack_b)
 			push_middle(stack_a, stack_b, 0);
 }
 
-
-
 void	sort_generico(t_list **stack_a, t_list **stack_b)
 {
 	sort_to_b(stack_a, stack_b);
-	while ((*stack_b)->index != is_max(stack_a))
+	while ((*stack_b)->index != max(stack_a))
 		rb(stack_b);
 	rb(stack_b);
 	rb(stack_b);
-	while ((*stack_b)->index != 0)
+	while ((*stack_b))
 		pa(stack_a, stack_b);
-	pa(stack_a, stack_b);
 }
