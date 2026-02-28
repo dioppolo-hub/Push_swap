@@ -113,23 +113,114 @@ void	push_middle(t_list **stack_a, t_list **stack_b, int ra)
 	push_index(best_ra, stack_a, stack_b);
 }
 
+void	execute_rotations_back(int rb_pos, t_list **a, t_list **b)
+{
+	int	ra_pos;
+	int	common;
+	int	ra_moves;
+	int	rb_moves;
+	t_list	*tmp;
+	int	i;
+
+	tmp = *b;
+	i = 0;
+	while (i < rb_pos)
+	{
+		tmp = tmp->next;
+		i++;
+	}
+	ra_pos = find_pos_in_a(tmp->index, a);
+	if (ra_pos < ft_lstsize(*a) / 2 && rb_pos < ft_lstsize(*b) / 2)
+	{
+		common = min(ra_pos, rb_pos);
+		ra_moves = ra_pos - common;
+		rb_moves = rb_pos - common;
+		while (common--)
+			rr(a, b);
+		while (ra_moves--)
+			ra(a);
+		while (rb_moves--)
+			rb(b);
+	}
+	else if (ra_pos >= ft_lstsize(*a) / 2 && rb_pos >= ft_lstsize(*b) / 2)
+	{
+		ra_moves = ft_lstsize(*a) - ra_pos;
+		rb_moves = ft_lstsize(*b) - rb_pos;
+		common = min(ra_moves, rb_moves);
+		ra_moves -= common;
+		rb_moves -= common;
+		while (common--)
+			rrr(a, b);
+		while (ra_moves--)
+			rra(a);
+		while (rb_moves--)
+			rrb(b);
+	}
+	else if (ra_pos < ft_lstsize(*a) / 2 && rb_pos >= ft_lstsize(*b) / 2)
+	{
+		ra_moves = ra_pos;
+		rb_moves = ft_lstsize(*b) - rb_pos;
+		while (ra_moves--)
+			ra(a);
+		while (rb_moves--)
+			rrb(b);
+	}
+	else
+	{
+		ra_moves = ft_lstsize(*a) - ra_pos;
+		rb_moves = rb_pos;
+		while (ra_moves--)
+			rra(a);
+		while (rb_moves--)
+			rb(b);
+	}
+	pa(a, b);
+}
+
+void	push_back(t_list **stack_a, t_list **stack_b)
+{
+	int		rb;
+	int		pos;
+	int		moves;
+	int		best_rb;
+	int		min_move;
+	t_list	*currB;
+
+	min_move = -1;
+	rb = 0;
+	currB = *stack_b;
+	while (currB)
+	{
+		pos = find_pos_in_a(currB->index, stack_a);
+		moves = calc_moves(rb, pos, ft_lstsize(*stack_a), ft_lstsize(*stack_b));
+
+		if (moves < min_move || min_move == -1)
+		{
+			min_move = moves;
+			best_rb = rb;
+		}
+		currB = currB->next;
+		rb++;
+	}
+	execute_rotations_back(best_rb, stack_a, stack_b);
+}
+
 static void	sort_to_b(t_list **stack_a, t_list **stack_b)
 {
 	pb(stack_a, stack_b);
 	pb(stack_a, stack_b);
 	if ((*stack_b)->content < (*stack_b)->next->content)
 		sb(stack_b);
-	while ((*stack_a) != NULL)
-			push_middle(stack_a, stack_b, 0);
+	while (ft_lstsize(*stack_a) > 3)
+		push_middle(stack_a, stack_b, 0);
+	sort_tre(stack_a);
 }
 
 void	sort_generico(t_list **stack_a, t_list **stack_b)
 {
 	sort_to_b(stack_a, stack_b);
-	while ((*stack_b)->index != max(stack_a))
-		rb(stack_b);
-	rb(stack_b);
-	rb(stack_b);
-	while ((*stack_b))
-		pa(stack_a, stack_b);
+	while (*stack_b)
+		push_back(stack_a, stack_b);
+	while ((*stack_a)->index != 0)
+		ra(stack_a);
 }
