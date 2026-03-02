@@ -6,13 +6,13 @@
 /*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 09:55:01 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/03/02 10:41:59 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/03/02 11:36:45 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* void	print_stack(t_list *stack, int caso)
+void	print_stack(t_list *stack, int caso)
 {
 	if (caso == 1)
 	{
@@ -20,14 +20,15 @@
 		while (stack != NULL)
 		{
 			if (stack->next != NULL)
-				printf("[%d|%d]->", (int)stack->content, (int)stack->index);
+				printf("%d ", (int)stack->index);
 			else
-				printf("[%d|%d]", (int)stack->content, (int)stack->index);
+				printf("%d ", (int)stack->index);
 			stack = stack->next;
 		}
 		printf("\n");
 	}
-	if (caso == 2)
+}
+	/* if (caso == 2)
 	{
 		printf("Stack_B: ");
 		while (stack != NULL)
@@ -61,6 +62,7 @@ int	main(int argc, char **argv)
 		add_stack(argv[x++], &stack_a);
 	size = ft_lstsize(stack_a);
 	indice_stack(&stack_a, size);
+	print_stack(stack_a, 1);
 	if (size == 2 && stack_a->content > stack_a->next->content)
 		sa(&stack_a);
 	if (size == 3)

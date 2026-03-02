@@ -6,7 +6,7 @@
 /*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 09:19:52 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/03/02 09:59:16 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/03/02 11:20:09 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,23 @@ int	max_index(t_list *stack)
 		stack = stack->next;
 	}
 	return (max);
+}
+
+int	pos_min(t_list	**stack_a)
+{
+	int		min;
+	int		i;
+	t_list	*curr;
+
+	min = 0;
+	i = 0;
+	curr = (*stack_a);
+	while (curr)
+	{
+		if (curr->index == min)
+			return (i);
+		i++;
+		curr = curr->next;
+	}
+	return (-1);
 }
