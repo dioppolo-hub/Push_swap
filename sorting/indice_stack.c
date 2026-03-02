@@ -6,7 +6,7 @@
 /*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 16:54:34 by diego             #+#    #+#             */
-/*   Updated: 2026/02/23 11:40:31 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/03/02 09:21:17 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,20 +53,6 @@ static void	sostituzione_while(int size, int *tmp, t_list **stack, t_list *curr)
 			}
 			i++;
 		}
-		curr = curr->next;
-	}
-}
-
-void	rev_indice_stack(t_list **stack, int *tmp)
-{
-	t_list	*curr;
-	int		i;
-
-	curr = (*stack);
-	i = 0;
-	while (curr)
-	{
-		curr->content = tmp[i++];
 		curr = curr->next;
 	}
 }

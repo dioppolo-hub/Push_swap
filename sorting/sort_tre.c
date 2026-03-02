@@ -6,7 +6,7 @@
 /*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 11:09:41 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/02/23 09:45:46 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/03/02 09:38:02 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	sort_tre(t_list **stack)
 	}
 	if ((curr->index < middle->index)
 		&& (curr->index > last->index))
-		rra(stack);	
+		rra(stack);
 	if ((curr->index < middle->index) && (middle->index > last->index)
 		&& (curr->index < last->index))
 	{

@@ -6,13 +6,13 @@
 /*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 13:46:17 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/02/23 14:23:55 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/03/02 09:37:44 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		find_index(t_list *stack, int target)
+int	find_index(t_list *stack, int target)
 {
 	int	x;
 

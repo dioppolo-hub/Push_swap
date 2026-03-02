@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diego <diego@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 09:55:01 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/02/27 21:59:43 by diego            ###   ########.fr       */
+/*   Updated: 2026/03/02 10:41:59 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_stack(t_list *stack, int caso)
+/* void	print_stack(t_list *stack, int caso)
 {
 	if (caso == 1)
 	{
@@ -40,24 +40,10 @@ void	print_stack(t_list *stack, int caso)
 		}
 		printf("\n");
 	}
-}
+} */
 
-void	print_tmparr(int *arr, int size)
-{
-	int	i;
-
-	printf("Tmp_Array: ");
-	i = 0;
-	while (i < size)
-	{
-		if (i < size - 1)
-			printf("[%d]->", arr[i]);
-		else
-			printf("[%d]", arr[i]);
-		i++;
-	}
-	printf("\n");
-}
+/* print_stack(stack_a, 1);
+	print_stack(stack_b, 2); */
 
 int	main(int argc, char **argv)
 {
@@ -75,8 +61,6 @@ int	main(int argc, char **argv)
 		add_stack(argv[x++], &stack_a);
 	size = ft_lstsize(stack_a);
 	indice_stack(&stack_a, size);
-	print_stack(stack_a, 1);
-	print_stack(stack_b, 2);
 	if (size == 2 && stack_a->content > stack_a->next->content)
 		sa(&stack_a);
 	if (size == 3)
@@ -87,7 +71,5 @@ int	main(int argc, char **argv)
 		sort_five(&stack_a, &stack_b);
 	if (size > 5)
 		sort_generico(&stack_a, &stack_b);
-	print_stack(stack_a, 1);
-	print_stack(stack_b, 2);
 	return (0);
 }

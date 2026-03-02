@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diego <diego@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 09:39:07 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/02/28 15:41:49 by diego            ###   ########.fr       */
+/*   Updated: 2026/03/02 10:26:43 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,7 @@ int			check_limit(int rb, int ra, int lenA, int lenB);
 int			max_index(t_list *stack);
 int			find_pos(int index, t_list **stack_b);
 int			find_pos_in_a(int index, t_list **stack_a);
+void		push_index(int c_ra, t_list **stack_a, t_list **stack_b);
+int			min(int a, int b);
+void		execute_rotations_back(int rb_pos, t_list **a, t_list **b);
 #endif
