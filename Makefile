@@ -8,7 +8,7 @@ SRC = libft/ft_atoi.c libft/ft_calloc.c libft/ft_split.c libft/ft_lstadd_front.c
 libft/ft_substr.c libft/ft_listnew.c libft/ft_lstclear.c libft/ft_listaddback.c libft/ft_lstdelone.c libft/ft_lstsize.c parcing/add_stack.c \
 parcing/free_error.c operations/swap.c operations/push.c operations/rotate.c operations/reverse_rotate.c sorting/indice_stack.c \
 sorting/sort_tre.c sorting/sort_four.c sorting/sort_five.c sorting/sort_generico.c sorting/fuck_this_number.c sorting/find_pos.c \
-sorting/push_index.c sorting/execute_rotations_back.c main.c
+sorting/push_index.c sorting/execute_rotations_back.c sorting/chunks.c main.c
 
 OBJ = $(SRC:.c=.o)
 

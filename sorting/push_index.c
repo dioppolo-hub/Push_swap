@@ -6,7 +6,7 @@
 /*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 10:01:21 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/03/03 14:41:55 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/03/03 16:15:18 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	up_down(t_list **stack_a, t_list **stack_b, int c_ra, int c_rb)
 		rb(stack_b);
 }
 
-void	push_index(int c_ra, t_list **stack_a, t_list **stack_b)
+void	push_index(int c_ra, t_list **a, t_list **b)
 {
 	int		c_rb;
 	t_list	*tmp;
@@ -84,21 +84,21 @@ void	push_index(int c_ra, t_list **stack_a, t_list **stack_b)
 	int		index;
 
 	i = 0;
-	tmp = *stack_a;
+	tmp = *a;
 	while (i < c_ra)
 	{
 		tmp = tmp->next;
 		i++;
 	}
 	index = tmp->index;
-	c_rb = find_pos(index, stack_b);
-	if (c_ra < ft_lstsize(*stack_a) / 2 && c_rb < ft_lstsize(*stack_b) / 2)
-		both_up(stack_a, stack_b, c_ra, c_rb);
-	else if (c_ra >= ft_lstsize(*stack_a) / 2 && c_rb >= ft_lstsize(*stack_b) / 2)
-		both_down(stack_a, stack_b, c_ra, c_rb);
-	else if (c_ra < ft_lstsize(*stack_a) / 2 && c_rb >= ft_lstsize(*stack_b) / 2)
-		down_up(stack_a, stack_b, c_ra, c_rb);
-	else if (c_ra >= ft_lstsize(*stack_a) / 2 && c_rb < ft_lstsize(*stack_b) / 2)
-		up_down(stack_a, stack_b, c_ra, c_rb);
-	pb(stack_a, stack_b);
+	c_rb = find_pos(index, b);
+	if (c_ra < ft_lstsize(*a) / 2 && c_rb < ft_lstsize(*b) / 2)
+		both_up(a, b, c_ra, c_rb);
+	else if (c_ra >= ft_lstsize(*a) / 2 && c_rb >= ft_lstsize(*b) / 2)
+		both_down(a, b, c_ra, c_rb);
+	else if (c_ra < ft_lstsize(*a) / 2 && c_rb >= ft_lstsize(*b) / 2)
+		down_up(a, b, c_ra, c_rb);
+	else if (c_ra >= ft_lstsize(*a) / 2 && c_rb < ft_lstsize(*b) / 2)
+		up_down(a, b, c_ra, c_rb);
+	pb(a, b);
 }

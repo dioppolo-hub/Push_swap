@@ -1,49 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_generico.c                                    :+:      :+:    :+:   */
+/*   chunks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/20 21:57:03 by  diego            #+#    #+#             */
-/*   Updated: 2026/03/03 16:13:54 by dioppolo         ###   ########.fr       */
+/*   Created: 2026/03/03 16:06:49 by dioppolo          #+#    #+#             */
+/*   Updated: 2026/03/03 16:12:17 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	min(int a, int b)
-{
-	if (a > b)
-		return (b);
-	return (a);
-}
-
-static void	push_middle(t_list **stack_a, t_list **stack_b, int ra)
-{
-	int		moves;
-	int		min_move;
-	int		pos;
-	t_list	*curr;
-	int		best_ra;
-
-	ra = 0;
-	min_move = -1;
-	curr = (*stack_a);
-	while (curr != NULL)
-	{
-		pos = find_pos(curr->index, stack_b);
-		moves = calc_moves(pos, ra, ft_lstsize(*stack_a), ft_lstsize(*stack_b));
-		if (moves < min_move || min_move == -1)
-		{
-			best_ra = ra;
-			min_move = moves;
-		}
-		curr = curr->next;
-		ra++;
-	}
-	push_index(best_ra, stack_a, stack_b);
-}
 
 static void	push_back(t_list **stack_a, t_list **stack_b, int rb)
 {
@@ -70,20 +37,42 @@ static void	push_back(t_list **stack_a, t_list **stack_b, int rb)
 	execute_rotations_back(best_rb, stack_a, stack_b);
 }
 
-static void	sort_to_b(t_list **stack_a, t_list **stack_b)
+static void	norm_chunks(t_list **stack_a, t_list **stack_b)
 {
-	pb(stack_a, stack_b);
-	pb(stack_a, stack_b);
-	if ((*stack_b)->content < (*stack_b)->next->content)
-		sb(stack_b);
-	while (ft_lstsize(*stack_a) > 3)
-		push_middle(stack_a, stack_b, 0);
-	sort_tre(stack_a);
+	int	counter;
+	int	chunk_size;
+	int	temp;
+
+	counter = 2;
+	chunk_size = ft_lstsize(*stack_a) / 10;
+	temp = 1;
+	while (ft_lstsize(*stack_a) > 0)
+	{
+		if (ft_lstsize(*stack_b) == counter * chunk_size)
+		{
+			temp = counter + 1;
+			counter += 2;
+		}
+		if ((*stack_a)->index < chunk_size * temp)
+		{
+			pb(stack_a, stack_b);
+			rb(stack_b);
+		}
+		else if ((*stack_a)->index < chunk_size * counter)
+			pb(stack_a, stack_b);
+		else
+			ra(stack_a);
+	}
 }
 
-void	sort_generico(t_list **stack_a, t_list **stack_b)
+void	chunks(t_list **stack_a, t_list **stack_b, int size)
 {
-	sort_to_b(stack_a, stack_b);
+	if (size <= 100)
+	{
+		sort_generico(stack_a, stack_b);
+		return ;
+	}
+	norm_chunks(stack_a, stack_b);
 	while (*stack_b)
 		push_back(stack_a, stack_b, 0);
 	if (pos_min(stack_a) < ft_lstsize(*stack_a) / 2)

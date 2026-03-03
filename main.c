@@ -6,7 +6,7 @@
 /*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 09:55:01 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/03/03 14:30:36 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/03/03 16:13:00 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	main(int argc, char **argv)
 	else if (ft_lstsize(stack_a) == 5)
 		sort_five(&stack_a, &stack_b);
 	else if (ft_lstsize(stack_a) > 5)
-		sort_generico(&stack_a, &stack_b);
+		chunks(&stack_a, &stack_b, ft_lstsize(stack_a));
 	ft_lstclear(&stack_a);
 	return (0);
 }
