@@ -6,7 +6,7 @@
 /*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 13:46:17 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/03/02 09:37:44 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/03/03 13:45:54 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,15 @@ int	find_index(t_list *stack, int target)
 
 void	sort_five(t_list **stack_a, t_list **stack_b)
 {
-	int	x;
-
-	x = find_index(*stack_a, 0);
-	while (x--)
-		ra(stack_a);
-	pb(stack_a, stack_b);
-	x = find_index(*stack_a, 1);
-	while (x--)
-		ra(stack_a);
-	pb(stack_a, stack_b);
+	while (ft_lstsize(*stack_a) > 3)
+	{
+		if ((*stack_a)->index == 0 || (*stack_a)->index == 1)
+			pb(stack_a, stack_b);
+		else
+			ra(stack_a);
+	}
+	if ((*stack_b)->index < (*stack_b)->next->index)
+		sb(stack_b);
 	sort_tre(stack_a);
 	pa(stack_a, stack_b);
 	pa(stack_a, stack_b);

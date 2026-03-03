@@ -6,13 +6,13 @@
 /*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 09:55:01 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/03/02 11:36:45 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/03/03 14:30:36 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_stack(t_list *stack, int caso)
+/* void	print_stack(t_list *stack, int caso)
 {
 	if (caso == 1)
 	{
@@ -27,7 +27,7 @@ void	print_stack(t_list *stack, int caso)
 		}
 		printf("\n");
 	}
-}
+} */
 	/* if (caso == 2)
 	{
 		printf("Stack_B: ");
@@ -49,7 +49,6 @@ void	print_stack(t_list *stack, int caso)
 int	main(int argc, char **argv)
 {
 	long int	x;
-	int			size;
 	t_list		*stack_a;
 	t_list		*stack_b;
 
@@ -60,18 +59,17 @@ int	main(int argc, char **argv)
 	x = 1;
 	while (x < argc)
 		add_stack(argv[x++], &stack_a);
-	size = ft_lstsize(stack_a);
-	indice_stack(&stack_a, size);
-	print_stack(stack_a, 1);
-	if (size == 2 && stack_a->content > stack_a->next->content)
+	indice_stack(&stack_a, ft_lstsize(stack_a));
+	if (ft_lstsize(stack_a) == 2 && stack_a->content > stack_a->next->content)
 		sa(&stack_a);
-	if (size == 3)
+	else if (ft_lstsize(stack_a) == 3)
 		sort_tre(&stack_a);
-	if (size == 4)
+	else if (ft_lstsize(stack_a) == 4)
 		sort_four(&stack_a, &stack_b);
-	if (size == 5)
+	else if (ft_lstsize(stack_a) == 5)
 		sort_five(&stack_a, &stack_b);
-	if (size > 5)
+	else if (ft_lstsize(stack_a) > 5)
 		sort_generico(&stack_a, &stack_b);
+	ft_lstclear(&stack_a);
 	return (0);
 }
