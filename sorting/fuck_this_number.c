@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fuck_this_number.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diego <diego@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 09:19:52 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/03/02 11:20:09 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/03/04 13:37:17 by diego            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,22 +35,6 @@ int	calc_moves(int rb, int ra, int lenA, int lenB)
 	}
 	else
 		return (cost_a + cost_b);
-}
-
-int	max_index(t_list *stack)
-{
-	int	max;
-
-	if (!stack)
-		return (-1);
-	max = stack->index;
-	while (stack)
-	{
-		if (stack->index > max)
-			max = stack->index;
-		stack = stack->next;
-	}
-	return (max);
 }
 
 int	pos_min(t_list	**stack_a)

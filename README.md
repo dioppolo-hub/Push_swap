@@ -1,30 +1,103 @@
+*This project has been created as part of the 42 curriculum by dioppolo.*
+
 # Push_swap
-## 1. Il Concetto: 
-## Pre-ordinamento per Intervalli
-Invece di cercare il valore minimo assoluto (che richiederebbe troppe rotazioni), l'algoritmo divide l'insieme dei numeri in "intervalli" (chunk) basati sulla loro posizione finale una volta ordinati. 
 
-### Indicizzazione: 
-Prima di iniziare, copia i numeri in un array temporaneo, ordinali (es. con QuickSort) e sostituisci ogni numero originale con la sua posizione nell'ordine (0, 1, 2...). In questo modo, se hai 500 numeri, saprai esattamente che i numeri del primo chunk sono quelli da 0 a 19.
-### Spostamento in Stack B:
-Scansiona la Pila A. Se il numero in cima appartiene al chunk corrente, spostalo nella Pila B. Se appartiene alla metà inferiore del chunk corrente, puoi anche eseguire una rotazione su B (rb) per pre-ordinarlo grossolanamente. 
+## Description
 
-## 2. Parametri Ottimali (Quanti Chunk?)
-La dimensione dei chunk influenza drasticamente il punteggio. Valori comunemente accettati dalla community di 42 per ottimizzare le mosse sono:
-- `Per 100 numeri:`
-Circa 5 chunk (blocchi da 20 numeri ciascuno).
-- `Per 500 numeri:`
-Circa 11-13 chunk (blocchi da circa 40 numeri).
+`push_swap` is a small sorting program written in C.  
+Given a space‑separated list of integers on the command line, it outputs a
+sequence of operations (`sa`, `pb`, `ra`, …) which, when applied to two stacks
+(`A` and `B`), will sort the numbers in ascending order.  
+The goal of the project is to minimise the number of operations for any
+input while respecting the rules of the subject.
 
-## 3. Fasi dell'Algoritmo
-- `Suddivisione:`
-Dividi i numeri in chunk.
-- `Push a blocchi (A->B):`
-Sposta tutti i numeri del Chunk 1 dalla Pila A alla Pila B, poi passa al Chunk 2, e così via, finché A non è vuota (o ne restano solo 3, da ordinare con un algoritmo specifico).
-- `Ricomposizione (B->A):`
-In questa fase, B contiene tutti i numeri ma non è ordinata correttamente. Devi cercare ogni volta il numero più grande in B, portarlo in cima con il minor numero di rotazioni (rb o rrb) e riportarlo in A (pa). 
+The implementation adapts its strategy depending on the input size:
 
-## 4. Operazioni Chiave da Gestire in C
-Per implementare questo sistema in C, la tua struttura dati deve supportare:
-- `rotazione (ra, rb):` Sposta il primo elemento in fondo.
-- `Reverse Rotate (rra, rrb):` Sposta l'ultimo elemento in cima.
-- `Push (pa, pb):` Sposta l'elemento tra le pile. 
+* **≤ 100 numbers** – only the *TURK algorithm* is used.  
+  This is a variant of the classic “push minimum/maximum” approach where
+  rotations and pushes are chosen by analysing the current top elements.
+* **≈ 500 numbers** – a hybrid method combining **Chunks** and **TURK**.  
+  The stack is first divided into chunks (intervals of indices) and elements
+  are moved to stack B chunk by chunk. Within each chunk the TURK procedure
+  drives the decision of rotations. After A is empty the values are
+  re‑assembled from B with optimal rotations.
+
+Auxiliary routines (`ft_split`, `ft_atoi`, linked‑list helpers, …) are provided
+in `libft/` and used throughout the project.  See `main.c` for the entry point
+and the sorting modules in `sorting/`.
+
+A companion visualiser (`push_swap_visualizer/`) can run the program and
+animate the stacks; it is built with C++17, SFML and ImGui.
+
+## Instructions
+
+1. **Build the project**
+
+   ```bash
+   cd /path/to/push_swap
+   make
+   ```
+
+   This produces the `push_swap` executable in the project root.
+
+2. **Run the algorithm**
+
+   ```bash
+   ./push_swap 3 2 5 1 4 | wc -l
+   ```
+
+   The program prints a list of commands on `stdout`. You can pipe the output
+   into the checker in `push_swap_tester` or feed it to the visualiser.
+
+3. **Visualiser** *(optional)*
+
+* Push_swap_visualiser: https://github.com/o-reo/push_swap_visualizer.git
+   ```bash
+   cd push_swap_visualizer
+   mkdir build && cd build
+   cmake ..
+   make
+   ./bin/visualizer
+   ```
+
+   Enter the path to your `push_swap` binary and the values to sort.  See
+   `push_swap_visualizer/README.md` for more details.
+
+**Tester** *(optional)*
+
+* Push_swap_tester: https://github.com/Sfabi28/push_swap_tester.git
+   ```bash
+   cd push_swap_tester
+   make
+   ```
+
+   Enter the path to your `push_swap` binary and the values to sort.  See
+   `push_swap_tester/README.md` for more details.
+
+4. **Other targets**
+
+   ```bash
+   make clean      # remove object files
+   make fclean     # remove objects and binary
+   make re         # fclean + all
+   ```
+
+## Resources
+
+* 42 Subject:  
+  https://github.com/Binary-Hackers/42_Subjects/blob/master/00_Projects/02_Algorithmic/push_swap.pdf
+* Stack‑based sorting tutorials, “push_swap” writeups from the 42 community
+  (e.g. ft_contest forks).
+* C reference manuals (`man 3`), BSD string functions, SFML/ImGui docs.
+
+## Additional information
+
+* **Algorithm overview**  
+  See `sorting/` for the implementation of `sort_tre`, `sort_four`,
+  `sort_five`, `sort_generico` and the `chunks` cost estimator.  
+* **Testing**  
+  The visualiser repo contains Catch2 unit tests for the queue operations
+  (`push_swap_visualizer/tests/`).
+* **Licence**  
+  The visualiser is distributed under the GNU GPL‑3.0 (see
+  `push_swap_visualizer/LICENSE`); `push_swap` itself inherits the same terms.
