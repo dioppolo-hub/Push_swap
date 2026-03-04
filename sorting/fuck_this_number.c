@@ -6,7 +6,7 @@
 /*   By: diego <diego@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 09:19:52 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/03/04 13:37:17 by diego            ###   ########.fr       */
+/*   Updated: 2026/03/04 16:54:16 by diego            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,18 @@ int	pos_min(t_list	**stack_a)
 		curr = curr->next;
 	}
 	return (-1);
+}
+
+int	is_already_sort(t_list **stack_a)
+{
+	t_list	*curr;
+
+	curr = *stack_a;
+	while (curr && curr->next)
+	{
+		if (curr->index > curr->next->index)
+			return (0);
+		curr = curr->next;
+	}
+	return (1);
 }

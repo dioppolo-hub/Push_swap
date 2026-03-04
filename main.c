@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diego <diego@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 09:55:01 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/03/03 16:13:00 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/03/04 16:51:59 by diego            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,22 @@
 
 /* print_stack(stack_a, 1);
 	print_stack(stack_b, 2); */
+static void	cases(t_list **stack_a, t_list **stack_b)
+{
+	int	len;
+
+	len = ft_lstsize(*stack_a);
+	if (len == 2 && (*stack_a)->content > (*stack_a)->next->content)
+		sa(stack_a);
+	else if (len == 3)
+		sort_tre(stack_a);
+	else if (len == 4)
+		sort_four(stack_a, stack_b);
+	else if (len == 5)
+		sort_five(stack_a, stack_b);
+	else if (len > 5)
+		chunks(stack_a, stack_b, len);
+}
 
 int	main(int argc, char **argv)
 {
@@ -60,16 +76,12 @@ int	main(int argc, char **argv)
 	while (x < argc)
 		add_stack(argv[x++], &stack_a);
 	indice_stack(&stack_a, ft_lstsize(stack_a));
-	if (ft_lstsize(stack_a) == 2 && stack_a->content > stack_a->next->content)
-		sa(&stack_a);
-	else if (ft_lstsize(stack_a) == 3)
-		sort_tre(&stack_a);
-	else if (ft_lstsize(stack_a) == 4)
-		sort_four(&stack_a, &stack_b);
-	else if (ft_lstsize(stack_a) == 5)
-		sort_five(&stack_a, &stack_b);
-	else if (ft_lstsize(stack_a) > 5)
-		chunks(&stack_a, &stack_b, ft_lstsize(stack_a));
-	ft_lstclear(&stack_a);
+	if(!is_already_sort(&stack_a))
+		return (0);
+	else
+	{
+		cases(&stack_a, &stack_b);
+		ft_lstclear(&stack_a);
+	}
 	return (0);
 }
