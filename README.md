@@ -101,3 +101,12 @@ animate the stacks; it is built with C++17, SFML and ImGui.
 * **Licence**  
   The visualiser is distributed under the GNU GPL‑3.0 (see
   `push_swap_visualizer/LICENSE`); `push_swap` itself inherits the same terms.
+
+## Bonus
+
+The following optional feature have been implemented as part of the project:
+
+* **Checker program** – a separate executable (`checker.c`) that reads a
+  sequence of operations from standard input and verifies that they correctly
+  sort the stack.  This is useful for automated testing and is invoked with
+  `./checker 3 2 1`.
