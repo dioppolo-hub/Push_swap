@@ -6,38 +6,50 @@
 /*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 17:36:43 by diego             #+#    #+#             */
-/*   Updated: 2026/03/05 09:23:00 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/03/05 12:53:37 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char	*read_line(void)
+char	*norm_read(char *line, int i, int r)
 {
-	char	*line;
 	char	buffer;
-	int		i;
-	int		r;
 
-	line = malloc(4);
-	if (!line)
-		return (NULL);
-	i = 0;
-	r = 1;
 	while (r > 0)
 	{
 		r = read(0, &buffer, 1);
+		if (i >= 4)
+		{
+			write(2, "Error\n", 6);
+			free(line);
+			return (NULL);
+		}
+		if (r <= 0 && i == 0)
+		{
+			free(line);
+			return (NULL);
+		}
 		if (buffer == '\n')
 			break ;
 		line[i++] = buffer;
 	}
-	if (r <= 0 && i == 0)
-	{
-		free(line);
-		return (NULL);
-	}
 	line[i] = '\0';
 	return (line);
+}
+
+char	*read_line(void)
+{
+	char	*line;
+	int		i;
+	int		r;
+
+	i = 0;
+	r = 1;
+	line = ft_calloc(4, sizeof(char));
+	if (!line)
+		return (NULL);
+	return (norm_read(line, i, r));
 }
 
 int	execute_instruction(char *line, t_list **a, t_list **b)
@@ -69,18 +81,20 @@ int	execute_instruction(char *line, t_list **a, t_list **b)
 	return (1);
 }
 
-void	norm_main(char *line, t_list **a, t_list **b)
+void	norm_main(t_list **a, t_list **b)
 {
+	char	*line;
+
 	while (1)
 	{
 		line = read_line();
 		if (!line)
 			break ;
-		if (!execute_instruction(line, &a, &b))
+		if (!execute_instruction(line, a, b))
 		{
 			write(2, "Error\n", 6);
 			free(line);
-			free_stacks(&a, &b);
+			free_stacks(a, b);
 			exit(1);
 		}
 		free(line);
@@ -92,7 +106,6 @@ int	main(int argc, char **argv)
 	t_list	*a;
 	t_list	*b;
 	int		x;
-	char	*line;
 
 	a = NULL;
 	b = NULL;
@@ -101,7 +114,8 @@ int	main(int argc, char **argv)
 	x = 1;
 	while (x < argc)
 		add_stack(argv[x++], &a);
-	norm_main(line, &a, &b);
+	norm_main(&a, &b);
+	indice_stack(&a, ft_lstsize(a));
 	if (is_already_sort(&a) && b == NULL)
 		write(1, "OK\n", 3);
 	else
