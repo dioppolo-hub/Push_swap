@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diego <diego@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 17:36:43 by diego             #+#    #+#             */
-/*   Updated: 2026/03/04 18:05:32 by diego            ###   ########.fr       */
+/*   Updated: 2026/03/05 09:23:00 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,12 @@ char	*read_line(void)
 	if (!line)
 		return (NULL);
 	i = 0;
-	while ((r = read(0, &buffer, 1)) > 0)
+	r = 1;
+	while (r > 0)
 	{
+		r = read(0, &buffer, 1);
 		if (buffer == '\n')
-			break;
+			break ;
 		line[i++] = buffer;
 	}
 	if (r <= 0 && i == 0)
@@ -38,7 +40,7 @@ char	*read_line(void)
 	return (line);
 }
 
-int execute_instruction(char *line, t_list **a, t_list **b)
+int	execute_instruction(char *line, t_list **a, t_list **b)
 {
 	if (!ft_strcmp(line, "sa"))
 		sa(a);
@@ -67,25 +69,13 @@ int execute_instruction(char *line, t_list **a, t_list **b)
 	return (1);
 }
 
-int main(int argc, char **argv)
+void	norm_main(char *line, t_list **a, t_list **b)
 {
-	t_list *a;
-	t_list *b;
-	int		x;
-	char    *line;
-
-	a = NULL;
-	b = NULL;
-	if (argc < 2)
-		return (0);
-	x = 1;
-	while (x < argc)
-		add_stack(argv[x++], &a);
 	while (1)
 	{
 		line = read_line();
 		if (!line)
-			break;
+			break ;
 		if (!execute_instruction(line, &a, &b))
 		{
 			write(2, "Error\n", 6);
@@ -95,6 +85,23 @@ int main(int argc, char **argv)
 		}
 		free(line);
 	}
+}
+
+int	main(int argc, char **argv)
+{
+	t_list	*a;
+	t_list	*b;
+	int		x;
+	char	*line;
+
+	a = NULL;
+	b = NULL;
+	if (argc < 2)
+		return (0);
+	x = 1;
+	while (x < argc)
+		add_stack(argv[x++], &a);
+	norm_main(line, &a, &b);
 	if (is_already_sort(&a) && b == NULL)
 		write(1, "OK\n", 3);
 	else

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diego <diego@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 09:55:01 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/03/04 16:51:59 by diego            ###   ########.fr       */
+/*   Updated: 2026/03/05 09:20:55 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	main(int argc, char **argv)
 	while (x < argc)
 		add_stack(argv[x++], &stack_a);
 	indice_stack(&stack_a, ft_lstsize(stack_a));
-	if(!is_already_sort(&stack_a))
+	if (!is_already_sort(&stack_a))
 		return (0);
 	else
 	{
