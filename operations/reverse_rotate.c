@@ -6,7 +6,7 @@
 /*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 15:22:01 by diego             #+#    #+#             */
-/*   Updated: 2026/02/19 15:50:00 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/03/06 11:05:24 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,24 +30,49 @@ void	reverse_rotate(t_list **stack)
 	(*stack) = last;
 }
 
-int	rra(t_list **stack_a)
+int	rra(t_list **stack_a, int i)
 {
-	reverse_rotate(stack_a);
-	write(1, "rra\n", 4);
-	return (1);
+	if (i == 1)
+	{
+		reverse_rotate(stack_a);
+		write(1, "rra\n", 4);
+		return (1);
+	}
+	else
+	{
+		reverse_rotate(stack_a);
+		return (1);
+	}
 }
 
-int	rrb(t_list **stack_b)
+int	rrb(t_list **stack_b, int i)
 {
-	reverse_rotate(stack_b);
-	write(1, "rrb\n", 4);
-	return (1);
+	if (i == 1)
+	{
+		reverse_rotate(stack_b);
+		write(1, "rrb\n", 4);
+		return (1);
+	}
+	else
+	{
+		reverse_rotate(stack_b);
+		return (1);
+	}
 }
 
-int	rrr(t_list **stack_a, t_list **stack_b)
+int	rrr(t_list **stack_a, t_list **stack_b, int i)
 {
+	if (i == 1)
+	{
 	reverse_rotate(stack_a);
 	reverse_rotate(stack_b);
 	write(1, "rrr\n", 4);
 	return (1);
+	}
+	else
+	{
+	reverse_rotate(stack_a);
+	reverse_rotate(stack_b);
+	return (1);
+	}
 }

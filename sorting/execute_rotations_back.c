@@ -6,7 +6,7 @@
 /*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 10:26:00 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/03/05 12:03:55 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/03/06 11:10:57 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ static void	both_up(t_list **a, t_list **b, int rb_pos, int ra_pos)
 	ra_moves = ra_pos - common;
 	rb_moves = rb_pos - common;
 	while (common--)
-		rr(a, b);
+		rr(a, b, 1);
 	while (ra_moves--)
-		ra(a);
+		ra(a, 1);
 	while (rb_moves--)
-		rb(b);
+		rb(b, 1);
 }
 
 static void	both_down(t_list **a, t_list **b, int rb_pos, int ra_pos)
@@ -41,11 +41,11 @@ static void	both_down(t_list **a, t_list **b, int rb_pos, int ra_pos)
 	ra_moves -= common;
 	rb_moves -= common;
 	while (common--)
-		rrr(a, b);
+		rrr(a, b, 1);
 	while (ra_moves--)
-		rra(a);
+		rra(a, 1);
 	while (rb_moves--)
-		rrb(b);
+		rrb(b, 1);
 }
 
 static void	up_down(t_list **a, t_list **b, int rb_pos, int ra_pos)
@@ -56,9 +56,9 @@ static void	up_down(t_list **a, t_list **b, int rb_pos, int ra_pos)
 	ra_moves = ra_pos;
 	rb_moves = ft_lstsize(*b) - rb_pos;
 	while (ra_moves--)
-		ra(a);
+		ra(a, 1);
 	while (rb_moves--)
-		rrb(b);
+		rrb(b, 1);
 }
 
 static void	down_up(t_list **a, t_list **b, int rb_pos, int ra_pos)
@@ -69,9 +69,9 @@ static void	down_up(t_list **a, t_list **b, int rb_pos, int ra_pos)
 	ra_moves = ft_lstsize(*a) - ra_pos;
 	rb_moves = rb_pos;
 	while (ra_moves--)
-		rra(a);
+		rra(a, 1);
 	while (rb_moves--)
-		rb(b);
+		rb(b, 1);
 }
 
 void	execute_rotations_back(int rb_pos, t_list **a, t_list **b)
@@ -96,5 +96,5 @@ void	execute_rotations_back(int rb_pos, t_list **a, t_list **b)
 		up_down(a, b, rb_pos, ra_pos);
 	else
 		down_up(a, b, rb_pos, ra_pos);
-	pa(a, b);
+	pa(a, b, 1);
 }

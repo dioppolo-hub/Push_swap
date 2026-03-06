@@ -6,7 +6,7 @@
 /*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 10:01:21 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/03/03 16:15:18 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/03/06 11:12:35 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void	both_up(t_list **stack_a, t_list **stack_b, int c_ra, int c_rb)
 	ra_moves = c_ra - common;
 	rb_moves = c_rb - common;
 	while (common > 0 && common--)
-		rr(stack_a, stack_b);
+		rr(stack_a, stack_b, 1);
 	while (ra_moves > 0 && ra_moves--)
-		ra(stack_a);
+		ra(stack_a, 1);
 	while (rb_moves > 0 && rb_moves--)
-		rb(stack_b);
+		rb(stack_b, 1);
 }
 
 void	both_down(t_list **stack_a, t_list **stack_b, int c_ra, int c_rb)
@@ -43,11 +43,11 @@ void	both_down(t_list **stack_a, t_list **stack_b, int c_ra, int c_rb)
 	ra_moves = rr_a - common;
 	rb_moves = rr_b - common;
 	while (common > 0 && common--)
-		rrr(stack_a, stack_b);
+		rrr(stack_a, stack_b, 1);
 	while (ra_moves > 0 && ra_moves--)
-		rra(stack_a);
+		rra(stack_a, 1);
 	while (rb_moves > 0 && rb_moves--)
-		rrb(stack_b);
+		rrb(stack_b, 1);
 }
 
 void	down_up(t_list **stack_a, t_list **stack_b, int c_ra, int c_rb)
@@ -58,9 +58,9 @@ void	down_up(t_list **stack_a, t_list **stack_b, int c_ra, int c_rb)
 	ra_moves = c_ra;
 	rb_moves = ft_lstsize(*stack_b) - c_rb;
 	while (ra_moves > 0 && ra_moves--)
-		ra(stack_a);
+		ra(stack_a, 1);
 	while (rb_moves > 0 && rb_moves--)
-		rrb(stack_b);
+		rrb(stack_b, 1);
 }
 
 void	up_down(t_list **stack_a, t_list **stack_b, int c_ra, int c_rb)
@@ -71,9 +71,9 @@ void	up_down(t_list **stack_a, t_list **stack_b, int c_ra, int c_rb)
 	ra_moves = ft_lstsize(*stack_a) - c_ra;
 	rb_moves = c_rb;
 	while (ra_moves > 0 && ra_moves--)
-		rra(stack_a);
+		rra(stack_a, 1);
 	while (rb_moves > 0 && rb_moves--)
-		rb(stack_b);
+		rb(stack_b, 1);
 }
 
 void	push_index(int c_ra, t_list **a, t_list **b)
@@ -100,5 +100,5 @@ void	push_index(int c_ra, t_list **a, t_list **b)
 		down_up(a, b, c_ra, c_rb);
 	else if (c_ra >= ft_lstsize(*a) / 2 && c_rb < ft_lstsize(*b) / 2)
 		up_down(a, b, c_ra, c_rb);
-	pb(a, b);
+	pb(a, b, 1);
 }

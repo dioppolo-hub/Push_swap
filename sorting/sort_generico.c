@@ -6,7 +6,7 @@
 /*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 21:57:03 by  diego            #+#    #+#             */
-/*   Updated: 2026/03/03 16:13:54 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/03/06 11:11:24 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,10 @@ static void	push_back(t_list **stack_a, t_list **stack_b, int rb)
 
 static void	sort_to_b(t_list **stack_a, t_list **stack_b)
 {
-	pb(stack_a, stack_b);
-	pb(stack_a, stack_b);
+	pb(stack_a, stack_b, 1);
+	pb(stack_a, stack_b, 1);
 	if ((*stack_b)->content < (*stack_b)->next->content)
-		sb(stack_b);
+		sb(stack_b, 1);
 	while (ft_lstsize(*stack_a) > 3)
 		push_middle(stack_a, stack_b, 0);
 	sort_tre(stack_a);
@@ -88,8 +88,8 @@ void	sort_generico(t_list **stack_a, t_list **stack_b)
 		push_back(stack_a, stack_b, 0);
 	if (pos_min(stack_a) < ft_lstsize(*stack_a) / 2)
 		while ((*stack_a)->index != 0)
-			ra(stack_a);
+			ra(stack_a, 1);
 	else
 		while ((*stack_a)->index != 0)
-			rra(stack_a);
+			rra(stack_a, 1);
 }

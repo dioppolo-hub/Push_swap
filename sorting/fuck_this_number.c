@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fuck_this_number.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diego <diego@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 09:19:52 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/03/04 16:54:16 by diego            ###   ########.fr       */
+/*   Updated: 2026/03/06 09:50:30 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ int	is_already_sort(t_list **stack_a)
 	while (curr && curr->next)
 	{
 		if (curr->index > curr->next->index)
-			return (0);
+			return (1);
 		curr = curr->next;
 	}
-	return (1);
+	return (0);
 }

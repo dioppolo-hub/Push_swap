@@ -6,7 +6,7 @@
 /*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 09:22:47 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/02/19 09:18:55 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/03/06 11:09:26 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,49 @@ static void	swap(t_list **stack_a)
 	(*stack_a) = b;
 }
 
-int	sa(t_list **stack_a)
+int	sa(t_list **stack_a, int i)
 {
-	swap(stack_a);
-	write (1, "sa\n", 3);
-	return (1);
+	if (i == 1)
+	{
+		swap(stack_a);
+		write (1, "sa\n", 3);
+		return (1);
+		}
+	else
+	{
+		swap(stack_a);
+		return (1);
+	}
 }
 
-int	sb(t_list **stack_b)
+int	sb(t_list **stack_b, int i)
 {
-	swap(stack_b);
-	write (1, "sb\n", 3);
-	return (1);
+	if (i == 1)
+	{
+		swap(stack_b);
+		write (1, "sb\n", 3);
+		return (1);
+	}
+	else
+	{
+		swap(stack_b);
+		return (1);
+	}
 }
 
-int	ss(t_list **stack_a, t_list **stack_b)
+int	ss(t_list **stack_a, t_list **stack_b, int i)
 {
-	swap(stack_a);
-	swap(stack_b);
-	write (1, "ss\n", 3);
-	return (1);
+	if (i == 1)
+	{
+		swap(stack_a);
+		swap(stack_b);
+		write (1, "ss\n", 3);
+		return (1);
+	}
+	else
+	{
+		swap(stack_a);
+		swap(stack_b);
+		return (1);
+	}
 }

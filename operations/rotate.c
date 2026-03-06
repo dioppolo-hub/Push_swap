@@ -6,7 +6,7 @@
 /*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 17:56:05 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/02/23 14:26:32 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/03/06 11:07:24 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,24 +28,49 @@ void	rotate(t_list **stack)
 	(*stack) = second;
 }
 
-int	ra(t_list **stack_a)
+int	ra(t_list **stack_a, int i)
 {
-	rotate(stack_a);
-	write(1, "ra\n", 3);
-	return (1);
+	if (i == 1)
+	{
+		rotate(stack_a);
+		write(1, "ra\n", 3);
+		return (1);
+	}
+	else
+	{
+		rotate(stack_a);
+		return (1);
+	}
 }
 
-int	rb(t_list **stack_b)
+int	rb(t_list **stack_b, int i)
 {
-	rotate(stack_b);
-	write(1, "rb\n", 3);
-	return (1);
+	if (i == 1)
+	{
+		rotate(stack_b);
+		write(1, "rb\n", 3);
+		return (1);
+	}
+	else
+	{
+		rotate(stack_b);
+		return (1);
+	}
 }
 
-int	rr(t_list **stack_a, t_list **stack_b)
+int	rr(t_list **stack_a, t_list **stack_b, int i)
 {
-	rotate(stack_a);
-	rotate(stack_b);
-	write(1, "rr\n", 3);
-	return (1);
+	if (i == 1)
+	{
+		rotate(stack_a);
+		rotate(stack_b);
+		write(1, "rr\n", 3);
+		return (1);
+	}
+	else
+	{
+		rotate(stack_a);
+		rotate(stack_b);
+		return (1);
+	}
 }

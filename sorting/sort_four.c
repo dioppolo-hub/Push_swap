@@ -6,7 +6,7 @@
 /*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 14:28:20 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/03/02 09:20:27 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/03/06 11:11:38 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	sort_four(t_list **stack_a, t_list **stack_b)
 
 	x = find_index(*stack_a, 0);
 	while (x--)
-		ra(stack_a);
-	pb(stack_a, stack_b);
+		ra(stack_a, 1);
+	pb(stack_a, stack_b, 1);
 	sort_tre(stack_a);
-	pa(stack_a, stack_b);
+	pa(stack_a, stack_b, 1);
 }
