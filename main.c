@@ -6,7 +6,7 @@
 /*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 09:55:01 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/03/05 09:20:55 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/03/06 11:19:58 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	cases(t_list **stack_a, t_list **stack_b)
 
 	len = ft_lstsize(*stack_a);
 	if (len == 2 && (*stack_a)->content > (*stack_a)->next->content)
-		sa(stack_a);
+		sa(stack_a, 1);
 	else if (len == 3)
 		sort_tre(stack_a);
 	else if (len == 4)

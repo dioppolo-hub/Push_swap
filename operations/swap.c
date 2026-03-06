@@ -6,7 +6,7 @@
 /*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 09:22:47 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/03/06 11:09:26 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/03/06 11:16:45 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	sa(t_list **stack_a, int i)
 		swap(stack_a);
 		write (1, "sa\n", 3);
 		return (1);
-		}
+	}
 	else
 	{
 		swap(stack_a);

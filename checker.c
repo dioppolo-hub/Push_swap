@@ -6,22 +6,20 @@
 /*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 17:36:43 by diego             #+#    #+#             */
-/*   Updated: 2026/03/06 11:01:00 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/03/06 11:17:10 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char	*norm_read(char *line, int i, int r)
+char	*norm_read(char *line, int i, int r, char buffer)
 {
-	char	buffer;
-
 	while (1)
 	{
 		r = read(0, &buffer, 1);
 		if (r <= 0)
 		{
-			if(i == 0)
+			if (i == 0)
 			{
 				free(line);
 				return (NULL);
@@ -47,13 +45,15 @@ char	*read_line(void)
 	char	*line;
 	int		i;
 	int		r;
+	char	buffer;
 
 	i = 0;
 	r = 1;
+	buffer = '\0';
 	line = ft_calloc(5, sizeof(char));
 	if (!line)
 		return (NULL);
-	return (norm_read(line, i, r));
+	return (norm_read(line, i, r, buffer));
 }
 
 int	execute_instruction(char *line, t_list **a, t_list **b)

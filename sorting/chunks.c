@@ -6,7 +6,7 @@
 /*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 16:06:49 by dioppolo          #+#    #+#             */
-/*   Updated: 2026/03/03 16:12:17 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/03/06 11:20:35 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ static void	norm_chunks(t_list **stack_a, t_list **stack_b)
 		}
 		if ((*stack_a)->index < chunk_size * temp)
 		{
-			pb(stack_a, stack_b);
-			rb(stack_b);
+			pb(stack_a, stack_b, 1);
+			rb(stack_b, 1);
 		}
 		else if ((*stack_a)->index < chunk_size * counter)
-			pb(stack_a, stack_b);
+			pb(stack_a, stack_b, 1);
 		else
-			ra(stack_a);
+			ra(stack_a, 1);
 	}
 }
 
@@ -77,8 +77,8 @@ void	chunks(t_list **stack_a, t_list **stack_b, int size)
 		push_back(stack_a, stack_b, 0);
 	if (pos_min(stack_a) < ft_lstsize(*stack_a) / 2)
 		while ((*stack_a)->index != 0)
-			ra(stack_a);
+			ra(stack_a, 1);
 	else
 		while ((*stack_a)->index != 0)
-			rra(stack_a);
+			rra(stack_a, 1);
 }

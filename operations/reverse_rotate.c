@@ -6,7 +6,7 @@
 /*   By: dioppolo <dioppolo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 15:22:01 by diego             #+#    #+#             */
-/*   Updated: 2026/03/06 11:05:24 by dioppolo         ###   ########.fr       */
+/*   Updated: 2026/03/06 11:16:56 by dioppolo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,15 +64,15 @@ int	rrr(t_list **stack_a, t_list **stack_b, int i)
 {
 	if (i == 1)
 	{
-	reverse_rotate(stack_a);
-	reverse_rotate(stack_b);
-	write(1, "rrr\n", 4);
-	return (1);
+		reverse_rotate(stack_a);
+		reverse_rotate(stack_b);
+		write(1, "rrr\n", 4);
+		return (1);
 	}
 	else
 	{
-	reverse_rotate(stack_a);
-	reverse_rotate(stack_b);
-	return (1);
+		reverse_rotate(stack_a);
+		reverse_rotate(stack_b);
+		return (1);
 	}
 }
